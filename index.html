@@ -1,252 +1,1132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#090611" />
-  <meta name="description" content="BRAINROT.exe — the internet's most useless website. Enter at your own risk 💀" />
-  <meta property="og:title" content="BRAINROT.exe 💀" />
-  <meta property="og:description" content="Your brain called. It wants a refund. Open this cursed website." />
-  <title>BRAINROT.exe 💀 | Internet ka bekaar corner</title>
+  <title>BRAINROT.exe</title>
+  <meta name="description" content="Apna brainrot level check karo. Funny scan, memes aur roast card." />
+
   <style>
-    :root{--bg:#090611;--panel:#151022;--pink:#ff3ec9;--purple:#a970ff;--lime:#d6ff5f;--text:#f8f3ff;--muted:#aaa0bd}
-    *{box-sizing:border-box}
-    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#2b1040 0,transparent 35%),radial-gradient(ellipse at 100% 30%,#19104a 0,transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;overflow-x:hidden}
-    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(#ffffff18 1px,transparent 1px),linear-gradient(90deg,#ffffff18 1px,transparent 1px);background-size:35px 35px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
-    .wrap{width:min(1040px,92%);margin:auto;position:relative}
-    header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:12px}
-    .logo{font-weight:1000;letter-spacing:-1px;font-size:1.05rem}.logo span{color:var(--pink)}
-    .status{font:700 .72rem ui-monospace,monospace;color:var(--lime);border:1px solid #d6ff5f66;padding:8px 10px;border-radius:99px}
-    .hero{text-align:center;padding:62px 0 30px}
-    .eyebrow{display:inline-block;border:1px solid #ff3ec966;color:var(--pink);border-radius:99px;padding:7px 12px;font:700 .72rem ui-monospace,monospace;letter-spacing:1.5px}
-    h1{font-size:clamp(3rem,10vw,6.8rem);line-height:.92;letter-spacing:-.08em;margin:24px 0 18px;font-weight:1000}
-    h1 .grad{background:linear-gradient(90deg,var(--pink),var(--purple),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .sub{color:var(--muted);font-size:clamp(1rem,2.5vw,1.18rem);max-width:610px;margin:0 auto;line-height:1.7}
-    .warning{margin:26px auto 0;display:inline-flex;gap:8px;align-items:center;color:#fff;background:#ff3ec91b;border:1px solid #ff3ec94d;padding:10px 14px;border-radius:12px;font-size:.86rem}
-    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin:28px 0}
-    .card{background:linear-gradient(145deg,#1a1228ee,#100b1aee);border:1px solid #ffffff18;border-radius:22px;padding:24px;box-shadow:0 18px 70px #0004;backdrop-filter:blur(8px)}
-    .card h2{font-size:1.08rem;margin:0 0 7px}.hint{font-size:.87rem;color:var(--muted);line-height:1.5;margin:0 0 18px}
-    .joke{min-height:118px;display:grid;place-items:center;text-align:center;font-size:clamp(1.25rem,3vw,1.85rem);font-weight:900;line-height:1.35;padding:16px 4px}
-    .joke small{display:block;font-size:.72rem;color:var(--purple);font-weight:700;letter-spacing:1px;margin-bottom:10px}
-    .buttons{display:flex;flex-wrap:wrap;gap:10px}
-    button{font:800 .92rem inherit;cursor:pointer;border:0;border-radius:12px;padding:13px 16px;transition:transform .16s,filter .16s}
-    button:hover{transform:translateY(-2px);filter:brightness(1.1)}button:active{transform:scale(.98)}
-    .primary{background:linear-gradient(100deg,var(--pink),var(--purple));color:#100817;box-shadow:0 8px 28px #ff3ec933}
-    .secondary{background:#ffffff0b;border:1px solid #ffffff20;color:var(--text)}
-    .lime{background:var(--lime);color:#11130b}
-    .meter{height:10px;background:#ffffff12;border-radius:99px;overflow:hidden;margin:15px 0 8px}
-    .bar{height:100%;width:3%;background:linear-gradient(90deg,var(--pink),var(--purple),var(--lime));transition:width .45s ease}
-    .tiny{font: .75rem ui-monospace,monospace;color:var(--muted)}
-    .stat{font-size:2.3rem;font-weight:1000;color:var(--lime);margin:12px 0 0}
-    .roast{font-size:1.12rem;font-weight:800;line-height:1.5;margin:16px 0;min-height:80px}
-    .full{grid-column:1/-1}
-    .scanrow{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-    .terminal{font: .82rem/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;background:#050409;border:1px solid #b879ff44;color:#bfffa0;border-radius:14px;padding:15px;margin-top:16px;min-height:95px;white-space:pre-wrap}
-    .terminal .pink{color:var(--pink)}
-    .footer{text-align:center;color:var(--muted);font-size:.8rem;padding:26px 0 38px;line-height:1.8}
-    .footer b{color:var(--pink)}
-    .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--lime);color:#111;padding:12px 17px;border-radius:12px;font-weight:900;box-shadow:0 10px 40px #0007;transition:.25s;z-index:5;text-align:center;width:max-content;max-width:90%}
-    .toast.show{opacity:1;transform:translate(-50%,0)}
-    .glitch{animation:glitch .28s linear 2}
-    @keyframes glitch{0%,100%{transform:translate(0)}25%{transform:translate(3px,-2px);filter:hue-rotate(40deg)}50%{transform:translate(-3px,2px)}75%{transform:translate(2px,1px);filter:hue-rotate(-40deg)}}
-    .shake{animation:shake .35s ease-in-out}
-    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-    @media(max-width:720px){.hero{padding-top:42px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:20px}header{padding-top:16px}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <div class="logo">BRAINROT<span>.exe</span></div>
-      <div class="status">● SYSTEM UNSTABLE (mentally)</div>
-    </header>
-    <main>
-      <section class="hero">
-        <div class="eyebrow">WELCOME TO THE INTERNET'S BACK ALLEY</div>
-        <h1>YOUR BRAIN<br><span class="grad">NEEDS WIFI.</span></h1>
-        <p class="sub">A highly advanced artificial intelligence-powered website.<br>Actually no. We have 3 brain cells and one is on chai break.</p>
-        <div class="warning">⚠️ Warning: may cause uncontrollable “BRO WHAT 💀”</div>
-      </section>
-
-      <section class="grid">
-        <article class="card">
-          <h2>🎲 Random Bakchodi Generator</h2>
-          <p class="hint">Press the button. Receive wisdom nobody asked for.</p>
-          <div class="joke" id="joke"><div><small>DAILY DOSE OF NONSENSE</small>Loading disappointment...</div></div>
-          <div class="buttons">
-            <button class="primary" id="newJoke">Generate bakchodi ↗</button>
-            <button class="secondary" id="copyJoke">Copy this nonsense</button>
-          </div>
-        </article>
-
-        <article class="card">
-          <h2>🧠 Brain Damage Scanner</h2>
-          <p class="hint">A 100% fake scan. No medical claims, only emotional damage.</p>
-          <div class="scanrow">
-            <div><div class="tiny">BRAINROT LEVEL</div><div class="stat" id="level">0%</div></div>
-            <button class="lime" id="scan">SCAN MY BRAIN</button>
-          </div>
-          <div class="meter"><div class="bar" id="bar"></div></div>
-          <div class="tiny" id="scanLabel">Waiting for the last brain cell to connect…</div>
-          <div class="terminal" id="terminal"><span class="pink">$</span> brainrot --status<br>> User detected. Common sense not found.</div>
-        </article>
-
-        <article class="card full">
-          <div class="scanrow">
-            <div>
-              <h2>🗣️ Roast Me, Computer</h2>
-              <p class="hint" style="margin-bottom:0">Friendly roasts only. Your therapist has enough work.</p>
-            </div>
-            <button class="secondary" id="roastBtn">Roast me 💀</button>
-          </div>
-          <div class="roast" id="roast">Your screen time report saw you and immediately filed for leave.</div>
-          <button class="secondary" id="shareRoast">Share this roast</button>
-        </article>
-
-        <article class="card full">
-          <div class="scanrow">
-            <div>
-              <h2>🧪 The Useless Button™</h2>
-              <p class="hint" style="margin-bottom:0">Scientists spent 9 years making this button do absolutely nothing.</p>
-            </div>
-            <button class="primary" id="useless">DO NOT PRESS</button>
-          </div>
-          <div class="tiny" id="uselessResult" style="margin-top:15px">The button is legally useless. Probably.</div>
-        </article>
-      </section>
-    </main>
-    <footer class="footer">
-      Made with <b>zero brain cells</b> and questionable Wi-Fi.<br>
-      If you laughed, send this to your most chronically online friend.<br>
-      <button class="secondary" id="shareSite" style="margin-top:12px">Share BRAINROT.exe ↗</button><br>
-      <span>Unofficial parody project • No tracking • No account needed</span>
-    </footer>
-  </div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script>
-    const jokes = [
-      "My last brain cell just sent a resignation email. 💀",
-      "Life is short. So is my attention span. Wait, what were we doing?",
-      "I put the ‘pro’ in procrastination. The rest is pending.",
-      "Mummy: phone rakh de. Me: bas ek last reel. *sunrise*",
-      "My bank balance is doing a disappearing act. No ticket needed.",
-      "I need 8 hours of sleep. Unfortunately, I also need to overthink from 2 AM.",
-      "Wi-Fi down? Suddenly I'm a Victorian child with no hobbies.",
-      "My future is so bright, even my screen brightness is jealous.",
-      "Brain: let's sleep. Also brain at 2:47 AM: remember that awkward thing from 2019?",
-      "I'm not lazy. I'm on energy-saving mode. Permanently.",
-      "Me opening Google to do one task and leaving with 17 tabs and no answers.",
-      "My life has more plot twists than a soap opera written by a confused pigeon.",
-      "Confidence level: sent ‘you too’ when the waiter said enjoy your food.",
-      "I don't chase people. I chase the delivery guy on the map.",
-      "My plans are premium. My execution is free trial.",
-      "Exam ke time brain: server not responding. Please try after results.",
-      "I have a black belt in making scenarios that will never happen.",
-      "My screen time isn't high. My phone just misses me a lot.",
-      "If overthinking burned calories, I'd be a Wi-Fi signal.",
-      "I came. I saw. I forgot why I came."
-    ];
-    const roasts = [
-      "Your screen time report saw you and immediately filed for leave. 💀",
-      "You have 47 tabs open in your brain and all of them are playing music.",
-      "Your sleep schedule looks like it was designed by a raccoon.",
-      "You say ‘5 minutes’ with the confidence of a person who means 3 business days.",
-      "Your attention span just swiped left on this sentence.",
-      "You're not the main character. You're the buffering symbol in the intro.",
-      "Your to-do list has become a historical document.",
-      "You overthink so much, even your imaginary arguments need a sequel.",
-      "Your phone battery has more boundaries than you do.",
-      "You don't procrastinate. You let tasks marinate until they become emergencies."
-    ];
-    const scanMessages = [
-      "Common sense.exe has stopped responding.",
-      "Detected 17 unfinished tasks and one suspiciously cold chai.",
-      "Brain cells found: 2. One is buffering.",
-      "Installing life update… Error 404: motivation not found.",
-      "Scanning memories… found cringe from 2018. Delete? (cannot delete)",
-      "Final result: certified internet goblin. Congratulations?"
-    ];
-    const $ = id => document.getElementById(id);
-    let lastJoke = -1, scanCount = 0, toastTimer;
-    function pick(arr, last=-1) {
-      if (arr.length < 2) return 0;
-      let i; do { i = Math.floor(Math.random() * arr.length); } while (i === last);
-      return i;
+    /* ===== Base ===== */
+    :root {
+      --bg: #0d0818;
+      --panel: #1a1029;
+      --panel-2: #241539;
+      --pink: #ff4fa3;
+      --green: #7dff9e;
+      --yellow: #ffd84d;
+      --purple: #a77bff;
+      --text: #f5efff;
+      --muted: #b9a9d6;
+      --radius: 18px;
     }
-    function toast(message) {
-      $('toast').textContent = message;
-      $('toast').classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => $('toast').classList.remove('show'), 2200);
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
     }
-    function showJoke() {
-      lastJoke = pick(jokes, lastJoke);
-      $('joke').innerHTML = '<div><small>BREAKING: NOBODY ASKED</small>' + jokes[lastJoke] + '</div>';
-      $('joke').classList.remove('glitch'); void $('joke').offsetWidth; $('joke').classList.add('glitch');
+
+    body {
+      font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 79, 163, .18), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(125, 255, 158, .12), transparent 30%),
+        var(--bg);
+      overflow-x: hidden;
     }
-    async function copyText(text, success) {
-      try {
-        await navigator.clipboard.writeText(text);
-        toast(success);
-      } catch {
-        const area = document.createElement('textarea');
-        area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';
-        document.body.appendChild(area); area.select();
-        const ok = document.execCommand('copy'); area.remove();
-        toast(ok ? success : 'Copy failed — select the text manually.');
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .hidden { display: none !important; }
+
+    /* ===== Window ===== */
+    .app {
+      width: min(680px, 94vw);
+      margin: 28px auto 60px;
+    }
+
+    .window {
+      background: var(--panel);
+      border: 2px solid var(--purple);
+      border-radius: var(--radius);
+      box-shadow: 0 0 35px rgba(167, 123, 255, .25);
+      overflow: hidden;
+    }
+
+    .titlebar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: linear-gradient(90deg, #3b1d66, #1f1135);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      flex-wrap: wrap;
+    }
+
+    .titlebar-name {
+      font-weight: bold;
+      letter-spacing: .05em;
+      user-select: none;
+    }
+
+    .dots { display: flex; gap: 6px; }
+    .dots span {
+      width: 11px; height: 11px; border-radius: 50%;
+    }
+    .dots span:nth-child(1) { background: #ff5f57; }
+    .dots span:nth-child(2) { background: #ffbd2e; }
+    .dots span:nth-child(3) { background: #28c840; }
+
+    .small-btn {
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .small-btn:hover { background: rgba(255,255,255,.18); }
+
+    .screen {
+      padding: 26px 20px 30px;
+      min-height: 480px;
+      text-align: center;
+      animation: fadeIn .4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      margin: 6px 0 8px;
+      font-size: clamp(34px, 8vw, 56px);
+      color: var(--green);
+      text-shadow: 3px 3px 0 #3b1d66;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    h2 {
+      margin: 6px 0 12px;
+      color: var(--yellow);
+      font-size: clamp(22px, 5vw, 30px);
+    }
+
+    p { line-height: 1.6; }
+    .muted { color: var(--muted); }
+
+    .btn {
+      display: inline-block;
+      margin: 8px 6px;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 6px 0 #5d2b8f;
+      transition: transform .12s, box-shadow .12s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #5d2b8f; }
+    .btn.secondary {
+      background: linear-gradient(135deg, #2c3b52, #1e2a3c);
+      box-shadow: 0 6px 0 #101722;
+    }
+    .btn.secret {
+      background: linear-gradient(135deg, var(--green), var(--yellow));
+      color: #20102e;
+      box-shadow: 0 6px 0 #6d8b3b;
+    }
+
+    .btn-row { display: flex; flex-wrap: wrap; justify-content: center; }
+
+    /* ===== Stickers ===== */
+    .stickers {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 18px 0;
+      flex-wrap: wrap;
+    }
+
+    .sticker {
+      width: 120px;
+      height: 120px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      transition: transform .2s;
+      animation: bob 2.6s ease-in-out infinite;
+    }
+    .sticker:nth-child(2) { animation-delay: .4s; }
+    .sticker:hover { transform: scale(1.08) rotate(-4deg); }
+    .sticker.bounce { animation: pop .55s ease; }
+    .sticker img, .sticker svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,.35));
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.25) rotate(-8deg); }
+      70% { transform: scale(.92) rotate(6deg); }
+      100% { transform: scale(1); }
+    }
+
+    /* ===== Scan ===== */
+    .scan-box {
+      margin: 20px auto;
+      max-width: 480px;
+      text-align: left;
+    }
+
+    .progress-track {
+      height: 22px;
+      background: #0b0713;
+      border: 2px solid #3f2a64;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink));
+      transition: width .6s ease;
+    }
+
+    .scan-line {
+      margin-top: 14px;
+      min-height: 26px;
+      color: var(--green);
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .question {
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255,255,255,.08);
+      text-align: left;
+    }
+
+    .question h3 {
+      margin: 0 0 10px;
+      color: var(--yellow);
+      font-size: 17px;
+    }
+
+    .option {
+      display: block;
+      width: 100%;
+      margin: 7px 0;
+      padding: 11px 13px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      text-align: left;
+      font-size: 15px;
+    }
+    .option:hover { background: rgba(255,255,255,.12); }
+
+    /* ===== Result ===== */
+    .score {
+      font-size: clamp(56px, 14vw, 92px);
+      font-weight: bold;
+      color: var(--pink);
+      text-shadow: 4px 4px 0 #3b1d66;
+      margin: 0;
+    }
+
+    .level {
+      color: var(--green);
+      font-size: 20px;
+      font-weight: bold;
+      margin: 6px 0;
+    }
+
+    .roast {
+      max-width: 500px;
+      margin: 14px auto;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--panel-2);
+      border: 1px dashed var(--purple);
+      font-size: 16px;
+    }
+
+    /* ===== Memes ===== */
+    .meme-card {
+      max-width: 500px;
+      margin: 18px auto;
+      padding: 28px 22px;
+      border-radius: 16px;
+      background: linear-gradient(160deg, #2a1846, #180d2b);
+      border: 2px solid var(--yellow);
+      font-size: clamp(18px, 4vw, 23px);
+      font-weight: bold;
+      line-height: 1.5;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-1deg);
+      transition: transform .2s;
+    }
+    .meme-card.flip { animation: memeFlip .45s ease; }
+
+    @keyframes memeFlip {
+      0% { transform: rotateX(90deg); opacity: 0; }
+      100% { transform: rotateX(0); opacity: 1; }
+    }
+
+    /* ===== Surprise ===== */
+    .surprise {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(5, 2, 12, .92);
+      text-align: center;
+      animation: fadeIn .4s ease;
+    }
+
+    .surprise-box {
+      max-width: 460px;
+      padding: 28px;
+      border-radius: 18px;
+      border: 2px solid var(--green);
+      background: var(--panel);
+    }
+
+    .surprise-box p { font-size: 17px; }
+
+    /* ===== Toast ===== */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 300;
+      transform: translateX(-50%) translateY(30px);
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: #2b1d44;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      opacity: 0;
+      transition: opacity .25s, transform .25s;
+      pointer-events: none;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== Confetti / falling emoji ===== */
+    .falling {
+      position: fixed;
+      top: -40px;
+      z-index: 150;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); }
+    }
+
+    /* ===== Secret mode ===== */
+    body.secret h1 {
+      background: linear-gradient(90deg, var(--pink), var(--yellow), var(--green), var(--purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+    }
+
+    body.shake .app {
+      animation: shake .5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px) rotate(-1deg); }
+      40% { transform: translateX(8px) rotate(1deg); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 560px) {
+      .app { margin-top: 14px; }
+      .screen { padding: 20px 14px 24px; }
+      .sticker { width: 96px; height: 96px; }
+      .btn { width: 100%; max-width: 320px; margin: 7px 0; }
+      .btn-row { flex-direction: column; align-items: center; }
+    }
+
+    /* ===== Reduced motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
       }
     }
-    $('newJoke').addEventListener('click', showJoke);
-    $('copyJoke').addEventListener('click', () => {
-      const text = $('joke').innerText.replace('BREAKING: NOBODY ASKED','').trim();
-      copyText(text + '\n— BRAINROT.exe 💀', 'Nonsense copied. Spread the disease. 💀');
-    });
-    $('scan').addEventListener('click', () => {
-      scanCount++;
-      const level = Math.min(100, Math.floor(15 + Math.random() * 86));
-      $('level').textContent = level + '%';
-      $('bar').style.width = level + '%';
-      $('scanLabel').textContent = level < 40 ? 'Brain cell status: employed (for now).' : level < 75 ? 'Warning: too much internet detected.' : 'MAXIMUM BRAINROT. Please touch grass.';
-      $('terminal').innerHTML = '<span class="pink">$</span> brainrot --scan --deep<br>> Initializing fake scanner...<br>> ' + scanMessages[(scanCount - 1) % scanMessages.length] + '<br>> Result: ' + level + '% brainrot. This is a joke, not a real assessment.';
-      $('scan').textContent = scanCount === 1 ? 'SCAN AGAIN 🔁' : 'SCAN #' + (scanCount + 1) + ' 🔁';
-      if (scanCount === 2) toast('Second scan complete. Your brain has requested HR. 💀');
-      else if (scanCount === 3) toast('Third scan unlocked: please go drink water. 🫡');
-      else toast('Scan complete. Absolutely no science was used.');
-      $('terminal').classList.remove('glitch'); void $('terminal').offsetWidth; $('terminal').classList.add('glitch');
-    });
-    $('roastBtn').addEventListener('click', () => {
-      const roast = roasts[pick(roasts)];
-      $('roast').textContent = roast;
-      $('roast').classList.remove('shake'); void $('roast').offsetWidth; $('roast').classList.add('shake');
-    });
-    $('shareRoast').addEventListener('click', () => shareText($('roast').textContent + '\n\nRoasted by BRAINROT.exe 💀'));
-    $('useless').addEventListener('click', () => {
-      const lines = [
-        'Congratulations. You pressed a button. Humanity is saved.',
-        'Button pressed. Your aura has decreased by 3 points.',
-        'We have notified absolutely nobody.',
-        'Loading purpose... purpose not found.',
-        'This button has more commitment issues than your situationship.',
-        'Achievement unlocked: professional button presser.',
-        'Error 418: I am a teapot. Go drink water.'
-      ];
-      $('uselessResult').textContent = lines[Math.floor(Math.random() * lines.length)];
-      $('useless').textContent = 'STILL USELESS 😭';
-      $('uselessResult').classList.remove('glitch'); void $('uselessResult').offsetWidth; $('uselessResult').classList.add('glitch');
-    });
-    async function shareText(text) {
-      if (navigator.share) {
-        try { await navigator.share({title:'BRAINROT.exe 💀', text, url:location.href}); } catch(e) {}
-      } else copyText(text + '\n' + location.href, 'Copied. Now send it to the group chat. 🚀');
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="window" id="window">
+
+      <div class="titlebar">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div class="titlebar-name">BRAINROT.exe</div>
+        <button class="small-btn" id="soundToggle" type="button">🔊 Sound On</button>
+      </div>
+
+      <!-- ===== HOME ===== -->
+      <section class="screen" id="home">
+        <h1 id="logo" title="Click me 7 times">BRAINROT.exe</h1>
+        <p class="muted">Apna brainrot level check karo. Bas 3 sawaal, koi jhooth nahi (thoda sa).</p>
+
+        <div class="stickers">
+          <button class="sticker" data-sticker="dudu" type="button" aria-label="Dudu sticker"></button>
+          <button class="sticker" data-sticker="bubu" type="button" aria-label="Bubu sticker"></button>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn" id="startScan" type="button">🧠 Start Scan</button>
+          <button class="btn secondary" id="openMemes" type="button">😂 Meme Machine</button>
+        </div>
+      </section>
+
+      <!-- ===== SCAN ===== -->
+      <section class="screen hidden" id="scan">
+        <h2>Scanning...</h2>
+        <div class="stickers">
+          <button class="sticker" data-sticker="dudu" type="button" aria-label="Dudu sticker"></button>
+        </div>
+
+        <div class="scan-box" id="scanQuestions">
+          <div class="question" id="questionBox"></div>
+        </div>
+
+        <div class="scan-box hidden" id="scanProgress">
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="scan-line" id="scanLine">Initializing...</div>
+        </div>
+      </section>
+
+      <!-- ===== RESULT ===== -->
+      <section class="screen hidden" id="result">
+        <h2>Tera Brainrot Level</h2>
+        <p class="score" id="scoreText">0%</p>
+        <div class="level" id="levelText"></div>
+
+        <div class="stickers">
+          <button class="sticker" data-sticker="bubu" type="button" aria-label="Bubu sticker"></button>
+        </div>
+
+        <div class="roast" id="roastText"></div>
+
+        <div class="btn-row">
+          <button class="btn" id="shareCard" type="button">📸 Make Roast Card</button>
+          <button class="btn secondary" id="copyResult" type="button">📋 Copy Result</button>
+          <button class="btn secondary" id="scanAgain" type="button">🔁 Scan Again</button>
+          <button class="btn secret" id="dontPress" type="button">🤫 Don't Press</button>
+        </div>
+
+        <div class="btn-row">
+          <button class="small-btn" id="backHomeFromResult" type="button">⬅ Home</button>
+        </div>
+      </section>
+
+      <!-- ===== MEMES ===== -->
+      <section class="screen hidden" id="memes">
+        <h2>Meme Machine 😂</h2>
+        <p class="muted">Button dabao, random Hinglish meme milega.</p>
+
+        <div class="meme-card" id="memeCard"></div>
+
+        <div class="btn-row">
+          <button class="btn" id="nextMeme" type="button">Next Meme 🎲</button>
+          <button class="btn secondary" id="backHomeFromMemes" type="button">⬅ Home</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Surprise ending overlay -->
+  <div class="surprise hidden" id="surprise" role="dialog" aria-modal="true">
+    <div class="surprise-box">
+      <h2 id="surpriseTitle">Shutting down BRAINROT.exe...</h2>
+      <p id="surpriseText"></p>
+      <button class="btn" id="surpriseRestart" type="button">Restart 🔁</button>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       CONFIG — change these to add your own GIFs
+       Put a direct .gif link (ends with .gif) to replace the SVG.
+       ========================================================== */
+    const CONFIG = {
+      dudu: { name: "Dudu", gif: "" },
+      bubu: { name: "Bubu", gif: "" }
+    };
+
+    /* ==========================================================
+       HELPERS
+       ========================================================== */
+    const $ = id => document.getElementById(id);
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const randomItem = list => list[Math.floor(Math.random() * list.length)];
+
+    function showScreen(name) {
+      ["home", "scan", "result", "memes"].forEach(screen => {
+        $(screen).classList.toggle("hidden", screen !== name);
+      });
     }
-    $('shareSite').addEventListener('click', async () => {
-      const data = {title:'BRAINROT.exe 💀', text:'Your brain called. It wants a refund. 💀 Try this cursed website:', url:location.href};
-      if (navigator.share) {
-        try { await navigator.share(data); } catch(e) {}
-      } else copyText(data.text + '\n' + data.url, 'Link copied. Go cause chaos. 🚀');
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = $("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function confetti(emojis = ["🧠", "😂", "💀", "✨", "🐣", "🔥"], count = 40) {
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement("span");
+        piece.className = "falling";
+        piece.textContent = randomItem(emojis);
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.fontSize = 18 + Math.random() * 22 + "px";
+        piece.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 4200);
+      }
+    }
+
+    function shakeScreen() {
+      document.body.classList.add("shake");
+      setTimeout(() => document.body.classList.remove("shake"), 600);
+    }
+
+    /* ==========================================================
+       SOUND EFFECTS (Web Audio, no files needed)
+       ========================================================== */
+    let audioCtx = null;
+    let soundOn = true;
+
+    function getAudio() {
+      if (!audioCtx) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return null;
+        audioCtx = new AudioCtx();
+      }
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      return audioCtx;
+    }
+
+    function tone(freq, duration = 0.1, type = "square", volume = 0.05, delay = 0) {
+      if (!soundOn) return;
+      const ctx = getAudio();
+      if (!ctx) return;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const start = ctx.currentTime + delay;
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, start);
+      gain.gain.setValueAtTime(volume, start);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(start);
+      osc.stop(start + duration);
+    }
+
+    const sfx = {
+      click()   { tone(880, 0.05, "square", 0.03); },
+      blip()    { tone(660, 0.06, "triangle", 0.04); },
+      scan()    { [0, 0.08, 0.16].forEach(d => tone(400 + Math.random() * 500, 0.07, "sawtooth", 0.02, d)); },
+      done()    { [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.15, "triangle", 0.05, i * 0.09)); },
+      buzz()    { tone(160, 0.35, "sawtooth", 0.05); },
+      boing()   { tone(300, 0.25, "sine", 0.06); tone(600, 0.12, "sine", 0.04, 0.1); },
+      secret()  { [784, 988, 1175, 1568].forEach((f, i) => tone(f, 0.12, "square", 0.03, i * 0.07)); }
+    };
+
+    $("soundToggle").addEventListener("click", () => {
+      soundOn = !soundOn;
+      $("soundToggle").textContent = soundOn ? "🔊 Sound On" : "🔇 Sound Off";
+      if (soundOn) sfx.click();
     });
-    showJoke();
+
+    /* ==========================================================
+       STICKERS — Dudu and Bubu (SVG) or GIF
+       ========================================================== */
+    const svgDudu = `
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="60" cy="66" rx="44" ry="40" fill="#ffd84d" stroke="#3b1d66" stroke-width="4"/>
+        <circle cx="45" cy="58" r="6" fill="#3b1d66"/>
+        <circle cx="75" cy="58" r="6" fill="#3b1d66"/>
+        <path d="M45 78 Q60 92 75 78" fill="none" stroke="#3b1d66" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="36" cy="74" r="5" fill="#ff4fa3" opacity=".7"/>
+        <circle cx="84" cy="74" r="5" fill="#ff4fa3" opacity=".7"/>
+        <path d="M36 32 Q40 14 56 26" fill="none" stroke="#3b1d66" stroke-width="4" stroke-linecap="round"/>
+        <path d="M84 32 Q80 14 64 26" fill="none" stroke="#3b1d66" stroke-width="4" stroke-linecap="round"/>
+      </svg>`;
+
+    const svgBubu = `
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 40 L24 14 L48 30 Z" fill="#a77bff" stroke="#3b1d66" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M90 40 L96 14 L72 30 Z" fill="#a77bff" stroke="#3b1d66" stroke-width="4" stroke-linejoin="round"/>
+        <rect x="20" y="30" width="80" height="72" rx="36" fill="#a77bff" stroke="#3b1d66" stroke-width="4"/>
+        <circle cx="46" cy="66" r="8" fill="white"/>
+        <circle cx="74" cy="66" r="8" fill="white"/>
+        <circle cx="48" cy="67" r="3.5" fill="#3b1d66"/>
+        <circle cx="76" cy="67" r="3.5" fill="#3b1d66"/>
+        <ellipse cx="60" cy="86" rx="8" ry="5" fill="#3b1d66"/>
+      </svg>`;
+
+    function renderStickers() {
+      document.querySelectorAll("[data-sticker]").forEach(button => {
+        const key = button.dataset.sticker;
+        const config = CONFIG[key];
+        button.innerHTML = "";
+
+        if (config.gif) {
+          const img = document.createElement("img");
+          img.src = config.gif;
+          img.alt = config.name;
+          button.appendChild(img);
+        } else {
+          button.insertAdjacentHTML("beforeend", key === "dudu" ? svgDudu : svgBubu);
+        }
+      });
+    }
+
+    document.addEventListener("click", event => {
+      const sticker = event.target.closest("[data-sticker]");
+      if (!sticker) return;
+
+      sticker.classList.remove("bounce");
+      void sticker.offsetWidth;
+      sticker.classList.add("bounce");
+      sfx.boing();
+
+      const name = CONFIG[sticker.dataset.sticker].name;
+      showToast(`${name}: ${randomItem([
+        "Bhai itna mat dabao 😭",
+        "Main theek hoon, tu bata",
+        "Dudu ka mood: 60% chai",
+        "Bubu bol raha: scroll band kar 💀",
+        "Haan bol bhai, kya chal raha hai?"
+      ])}`);
+    });
+
+    /* ==========================================================
+       HOME + NAVIGATION
+       ========================================================== */
+    $("startScan").addEventListener("click", () => {
+      sfx.click();
+      startScan();
+    });
+
+    $("openMemes").addEventListener("click", () => {
+      sfx.click();
+      showScreen("memes");
+      showMeme();
+    });
+
+    ["backHomeFromResult", "backHomeFromMemes"].forEach(id => {
+      $(id).addEventListener("click", () => {
+        sfx.click();
+        showScreen("home");
+      });
+    });
+
+    /* ==========================================================
+       SCAN QUESTIONS + STAGES
+       ========================================================== */
+    const questions = [
+      {
+        q: "Subah uthke sabse pehle kya dekhte ho?",
+        options: [
+          { text: "Chai aur paani", points: 5 },
+          { text: "Phone ki notifications", points: 15 },
+          { text: "Reels, bina sochey 😭", points: 25 }
+        ]
+      },
+      {
+        q: "Raat ko time pe so jaate ho?",
+        options: [
+          { text: "8 baje so jaata hoon", points: 5 },
+          { text: "Kabhi kabhi 2 baje", points: 15 },
+          { text: "Sone ka plan hi nahi hota", points: 25 }
+        ]
+      },
+      {
+        q: "Koi meme dekhke kya karte ho?",
+        options: [
+          { text: "Bas ek smile", points: 5 },
+          { text: "Group mein bhej dena", points: 15 },
+          { text: "Screenshot, phir 40 minute scroll", points: 25 }
+        ]
+      }
+    ];
+
+    const scanStages = [
+      "Wi-Fi level check ho raha hai...",
+      "Reels ki count gin raha hoon...",
+      "Bhai-level energy detect ho rahi hai...",
+      "Dudu se permission le raha hoon...",
+      "Result ready hai! 🎉"
+    ];
+
+    let answerTotal = 0;
+    let currentQuestion = 0;
+    let scanning = false;
+
+    function startScan() {
+      answerTotal = 0;
+      currentQuestion = 0;
+      scanning = false;
+      $("scanQuestions").classList.remove("hidden");
+      $("scanProgress").classList.add("hidden");
+      showScreen("scan");
+      renderStickers();
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const item = questions[currentQuestion];
+      const box = $("questionBox");
+
+      box.innerHTML = `
+        <h3>${currentQuestion + 1}/${questions.length}. ${item.q}</h3>
+        ${item.options.map((opt, i) =>
+          `<button class="option" type="button" data-index="${i}">${opt.text}</button>`
+        ).join("")}
+      `;
+
+      box.querySelectorAll(".option").forEach(button => {
+        button.addEventListener("click", () => {
+          if (scanning) return;
+          sfx.blip();
+          answerTotal += item.options[Number(button.dataset.index)].points;
+          currentQuestion++;
+
+          if (currentQuestion < questions.length) {
+            showQuestion();
+          } else {
+            runScanStages();
+          }
+        });
+      });
+    }
+
+    async function runScanStages() {
+      scanning = true;
+      $("scanQuestions").classList.add("hidden");
+      $("scanProgress").classList.remove("hidden");
+
+      const fill = $("progressFill");
+      const line = $("scanLine");
+
+      for (let i = 0; i < scanStages.length; i++) {
+        line.textContent = scanStages[i];
+        fill.style.width = `${((i + 1) / scanStages.length) * 100}%`;
+        sfx.scan();
+        await sleep(800);
+      }
+
+      await sleep(300);
+      sfx.done();
+      showResult();
+    }
+
+    /* ==========================================================
+       RESULT + ROASTS
+       ========================================================== */
+    const levels = [
+      {
+        min: 0, max: 30,
+        name: "Touch Ghas Level 🌱",
+        roasts: [
+          "Tu toh almost normal hai bhai, thoda suspicious hai.",
+          "Phone rakh diya? Kaun hai tu, real wala?",
+          "Itna healthy brain dekh ke Wi-Fi bhi shock mein hai."
+        ]
+      },
+      {
+        min: 31, max: 60,
+        name: "Normal Bhai Level 📱",
+        roasts: [
+          "Thoda reels, thoda padhai, thoda chai. Balanced scene hai.",
+          "Tu Insta kholta hai aur 'bas 5 minute' bolta hai. Liar.",
+          "Brain abhi chal raha hai, bas thoda hang ho jaata hai."
+        ]
+      },
+      {
+        min: 61, max: 85,
+        name: "Reel Shaheed 💀",
+        roasts: [
+          "Tu reel dekhne aaya tha, reel ne tujhe dekh liya.",
+          "Itna scroll kiya hai ki thumb pe bhi ab muscle aa gayi.",
+          "Tera brain ab 0.5x speed pe chal raha hai, bhai."
+        ]
+      },
+      {
+        min: 86, max: 100,
+        name: "Certified Brainrot Ustaad 👑",
+        roasts: [
+          "Bhai tu toh ministry of brainrot ka HOD hai.",
+          "Skibidi bolke tu ghar ka Wi-Fi bhi confuse kar deta hai.",
+          "Certified. Framed. Laminated. Bhai bas phone chhod de ek baar. 😭"
+        ]
+      }
+    ];
+
+    let finalScore = 0;
+    let finalLevel = levels[0];
+    let finalRoast = "";
+
+    function showResult() {
+      // Quiz total (max 75) + random scan noise (0 to 25)
+      finalScore = Math.min(100, answerTotal + Math.floor(Math.random() * 26));
+      finalLevel = levels.find(l => finalScore >= l.min && finalScore <= l.max) || levels[levels.length - 1];
+      finalRoast = randomItem(finalLevel.roasts);
+
+      $("scoreText").textContent = `${finalScore}%`;
+      $("levelText").textContent = finalLevel.name;
+      $("roastText").textContent = `"${finalRoast}"`;
+
+      showScreen("result");
+      renderStickers();
+
+      if (finalScore >= 86) {
+        sfx.secret();
+        confetti(["👑", "💀", "🧠", "✨"], 30);
+      } else if (finalScore <= 30) {
+        sfx.buzz();
+      }
+    }
+
+    $("scanAgain").addEventListener("click", () => {
+      sfx.click();
+      startScan();
+    });
+
+    $("copyResult").addEventListener("click", async () => {
+      sfx.click();
+      const text = `BRAINROT.exe 🧠\nMera level: ${finalScore}% — ${finalLevel.name}\n"${finalRoast}"\nTu bhi check kar bhai!`;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Copy ho gaya! Ab group mein bhej de 😈");
+      } catch {
+        showToast("Copy nahi ho paya. Manually copy karo.");
+      }
+    });
+
+    /* ==========================================================
+       ROAST CARD (canvas PNG, shareable)
+       ========================================================== */
+    function wrapText(ctx, text, maxWidth) {
+      const words = text.split(" ");
+      const lines = [];
+      let line = "";
+
+      words.forEach(word => {
+        const test = line ? `${line} ${word}` : word;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line);
+          line = word;
+        } else {
+          line = test;
+        }
+      });
+
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    function makeRoastCardBlob() {
+      return new Promise(resolve => {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1080;
+        canvas.height = 1350;
+        const ctx = canvas.getContext("2d");
+
+        // Background
+        const bg = ctx.createLinearGradient(0, 0, 1080, 1350);
+        bg.addColorStop(0, "#2a1846");
+        bg.addColorStop(1, "#0d0818");
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, 1080, 1350);
+
+        // Window frame
+        ctx.strokeStyle = "#a77bff";
+        ctx.lineWidth = 12;
+        ctx.strokeRect(40, 40, 1000, 1270);
+
+        ctx.fillStyle = "#3b1d66";
+        ctx.fillRect(40, 40, 1000, 90);
+        ctx.fillStyle = "#f5efff";
+        ctx.font = "bold 40px Trebuchet MS, Arial";
+        ctx.fillText("BRAINROT.exe", 80, 100);
+
+        // Title
+        ctx.fillStyle = "#7dff9e";
+        ctx.font = "bold 62px Trebuchet MS, Arial";
+        ctx.textAlign = "center";
+        ctx.fillText("Brainrot Level", 540, 260);
+
+        // Score
+        ctx.fillStyle = "#ff4fa3";
+        ctx.font = "bold 230px Trebuchet MS, Arial";
+        ctx.fillText(`${finalScore}%`, 540, 520);
+
+        // Level
+        ctx.fillStyle = "#ffd84d";
+        ctx.font = "bold 56px Trebuchet MS, Arial";
+        ctx.fillText(finalLevel.name, 540, 610);
+
+        // Roast
+        ctx.fillStyle = "#f5efff";
+        ctx.font = "italic 42px Trebuchet MS, Arial";
+        ctx.textAlign = "left";
+        const lines = wrapText(ctx, `"${finalRoast}"`, 860);
+        lines.forEach((text, i) => {
+          ctx.fillText(text, 110, 720 + i * 60);
+        });
+
+        // Footer
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#b9a9d6";
+        ctx.font = "bold 38px Trebuchet MS, Arial";
+        ctx.fillText("Tu bhi check kar bhai 😈", 540, 1220);
+
+        canvas.toBlob(blob => resolve(blob), "image/png");
+      });
+    }
+
+    $("shareCard").addEventListener("click", async () => {
+      sfx.click();
+      const blob = await makeRoastCardBlob();
+      if (!blob) {
+        showToast("Card nahi ban paya.");
+        return;
+      }
+
+      const file = new File([blob], "brainrot-roast-card.png", { type: "image/png" });
+
+      // Use native share if the phone supports sharing files
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            title: "BRAINROT.exe",
+            text: `Mera brainrot level ${finalScore}%! 😂`,
+            files: [file]
+          });
+          return;
+        } catch {
+          // User cancelled or share failed, so fall through to download
+        }
+      }
+
+      // Fallback: download the PNG
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "brainrot-roast-card.png";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast("Card download ho gaya! 📸");
+    });
+
+    /* ==========================================================
+       MEME MACHINE
+       ========================================================== */
+    const memes = [
+      "Bhai phone 1% pe, sapna 100% pe.",
+      "Ghar wale: 'Padhai kar.'\nMain: 'Ye reel bas 2 second ki hai...'",
+      "Alarm: 6 baje.\nMain: 'Kal se pakka.' 🛌",
+      "Dost: 'Kab milega?'\nMain: 'Bas kal pakka.' (kal kabhi nahi aata)",
+      "Chai ne bola: 'Main hi sab theek karunga.' 🍵",
+      "Mujhe apna brain bhi ab Wi-Fi jaisa lagta hai: 'Connected but slow.'",
+      "Skibidi bolo toh log dekhte hain, phir bhi main bolta rehta hoon. 😭",
+      "Exam ke pehle 2 din: 'Kuch bhi nahi aata.'\nExam ke baad: 'Mujhe sab aata tha.'",
+      "Mummy: 'Khana kha le.'\nMain: 'Ek minute, ye reel khatam ho jaye.' (1 ghanta gaya)",
+      "Padhai ke time: 'Mood nahi hai.'\nReels ke time: 'Mood ekdum set hai.' 💀",
+      "Group chat: 'Bhai kya haal?'\nMain: 'Theek hoon.' (bhai main theek nahi hoon)",
+      "Mere brain ka browser: 40 tabs open, 0 kaam complete. 🧠"
+    ];
+
+    let lastMemeIndex = -1;
+
+    function showMeme() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * memes.length);
+      } while (index === lastMemeIndex && memes.length > 1);
+
+      lastMemeIndex = index;
+
+      const card = $("memeCard");
+      card.textContent = memes[index];
+      card.classList.remove("flip");
+      void card.offsetWidth;
+      card.classList.add("flip");
+    }
+
+    $("nextMeme").addEventListener("click", () => {
+      sfx.blip();
+      showMeme();
+    });
+
+    /* ==========================================================
+       SURPRISE ENDING
+       ========================================================== */
+    const surpriseSteps = [
+      "Shutting down BRAINROT.exe...",
+      "Saving brain data... 🧠",
+      "Brain data: 'Thak gaya hoon.'",
+      "Last message: Thoda so ja bhai. Reel kal dekhna. 😌"
+    ];
+
+    $("dontPress").addEventListener("click", async () => {
+      sfx.secret();
+      $("surprise").classList.remove("hidden");
+      $("surpriseTitle").textContent = surpriseSteps[0];
+      $("surpriseText").textContent = "";
+
+      for (let i = 1; i < surpriseSteps.length; i++) {
+        await sleep(1200);
+        $("surpriseTitle").textContent = surpriseSteps[i];
+        sfx.blip();
+      }
+
+      await sleep(800);
+      $("surpriseText").textContent = "Ye scan bas fun ke liye tha. Thoda paani piyo, aur kal phir aana. 💚";
+      confetti(["💚", "😌", "🌙", "✨"], 25);
+    });
+
+    $("surpriseRestart").addEventListener("click", () => {
+      sfx.click();
+      $("surprise").classList.add("hidden");
+      showScreen("home");
+    });
+
+    $("surprise").addEventListener("click", event => {
+      if (event.target.id === "surprise") {
+        $("surprise").classList.add("hidden");
+      }
+    });
+
+    /* ==========================================================
+       EASTER EGGS
+       1. Click the title 7 times -> Secret mode
+       2. Type "skibidi" anywhere -> Emoji rain
+       3. Konami code (arrow keys + B A) -> Shake screen
+       ========================================================== */
+    let logoClicks = 0;
+    let logoTimer = null;
+
+    $("logo").addEventListener("click", () => {
+      logoClicks++;
+      clearTimeout(logoTimer);
+      logoTimer = setTimeout(() => (logoClicks = 0), 2000);
+
+      if (logoClicks === 7) {
+        logoClicks = 0;
+        document.body.classList.toggle("secret");
+        sfx.secret();
+        showToast(document.body.classList.contains("secret")
+          ? "🥚 Secret mode ON"
+          : "Secret mode OFF");
+        confetti(["🥚", "✨", "🌈"], 20);
+      }
+    });
+
+    const typedWord = "skibidi";
+    let typedBuffer = "";
+
+    const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+    let konamiIndex = 0;
+
+    document.addEventListener("keydown", event => {
+      // Skibidi typing
+      typedBuffer = (typedBuffer + event.key.toLowerCase()).slice(-typedWord.length);
+      if (typedBuffer === typedWord) {
+        typedBuffer = "";
+        sfx.secret();
+        showToast("Skibidi detected 🚽");
+        confetti(["🚽", "💀", "😂", "🔥"], 45);
+      }
+
+      // Konami code
+      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+      if (key === konamiCode[konamiIndex]) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          konamiIndex = 0;
+          sfx.boing();
+          shakeScreen();
+          showToast("Cheat code accepted. Brain ab 200% slow 😭");
+        }
+      } else {
+        konamiIndex = key === konamiCode[0] ? 1 : 0;
+      }
+    });
+
+    /* ==========================================================
+       INIT
+       ========================================================== */
+    renderStickers();
+    showScreen("home");
+
+    // Unlock audio on first click (mobile browsers need this)
+    document.addEventListener("click", () => getAudio(), { once: true });
   </script>
 </body>
 </html>
