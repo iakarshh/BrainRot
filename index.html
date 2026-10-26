@@ -3,188 +3,424 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BRAINROT.exe</title>
-  <meta name="description" content="Apna brainrot level check karo. Funny scan, memes aur roast card." />
+  <title>BRAINROT.exe 💀 — Where common sense comes to die</title>
+  <meta name="description" content="BRAINROT.exe: Random Hinglish bakchodi, fake brain scanner, roast cards, delulu meter, secret endings. Sirf mazaak ke liye." />
+  <meta property="og:title" content="BRAINROT.exe 💀" />
+  <meta property="og:description" content="Where common sense comes to die. Dekh le bhai." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%80%3C/text%3E%3C/svg%3E" />
+  <meta name="theme-color" content="#07030f" />
 
   <style>
-    /* ===== Base ===== */
+    /* =========================================================
+       BRAINROT.exe — STYLES
+       ========================================================= */
     :root {
-      --bg: #0d0818;
-      --panel: #1a1029;
-      --panel-2: #241539;
-      --pink: #ff4fa3;
-      --green: #7dff9e;
+      --bg: #07030f;
+      --panel: rgba(22, 8, 38, 0.88);
+      --pink: #ff2e97;
+      --purple: #9d4dff;
+      --green: #39ff14;
+      --cyan: #00f0ff;
       --yellow: #ffd84d;
-      --purple: #a77bff;
       --text: #f5efff;
       --muted: #b9a9d6;
-      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-    }
+    html, body { margin: 0; min-height: 100%; }
 
     body {
       font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 20% 10%, rgba(255, 79, 163, .18), transparent 30%),
-        radial-gradient(circle at 80% 90%, rgba(125, 255, 158, .12), transparent 30%),
-        var(--bg);
+        radial-gradient(circle at 15% 10%, rgba(255, 46, 151, .18), transparent 35%),
+        radial-gradient(circle at 85% 90%, rgba(0, 240, 255, .12), transparent 35%),
+        linear-gradient(160deg, #0b0215, var(--bg) 60%, #120425);
       overflow-x: hidden;
     }
 
+    body.rainbow .logo { animation: hue .8s linear infinite; }
+    body.invert { filter: invert(1) hue-rotate(180deg); }
+
+    button, input, select { font: inherit; }
+
     button {
-      font: inherit;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:disabled { cursor: not-allowed; opacity: .5; }
+
+    :focus-visible {
+      outline: 3px solid var(--cyan);
+      outline-offset: 3px;
     }
 
     .hidden { display: none !important; }
+    .mono { font-family: Consolas, "Courier New", monospace; }
 
-    /* ===== Window ===== */
-    .app {
-      width: min(680px, 94vw);
-      margin: 28px auto 60px;
+    /* CRT scanlines */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      pointer-events: none;
+      opacity: .12;
+      background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0, 0, 0, .9) 3px 4px);
     }
 
-    .window {
-      background: var(--panel);
-      border: 2px solid var(--purple);
-      border-radius: var(--radius);
-      box-shadow: 0 0 35px rgba(167, 123, 255, .25);
-      overflow: hidden;
+    /* Floating emoji background */
+    .floaters { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .floaters span {
+      position: fixed;
+      bottom: -60px;
+      opacity: .22;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      to { transform: translateY(-115vh) rotate(360deg); }
     }
 
-    .titlebar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: linear-gradient(90deg, #3b1d66, #1f1135);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      flex-wrap: wrap;
+    .burst-layer { position: fixed; inset: 0; z-index: 400; pointer-events: none; overflow: hidden; }
+    .burst {
+      position: fixed;
+      top: -50px;
+      animation: burstFall linear forwards;
+    }
+    @keyframes burstFall {
+      to { transform: translateY(115vh) rotate(540deg); }
     }
 
-    .titlebar-name {
-      font-weight: bold;
-      letter-spacing: .05em;
-      user-select: none;
+    /* Layout */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1080px, 94vw);
+      margin: 0 auto;
+      padding: 22px 0 110px;
     }
 
-    .dots { display: flex; gap: 6px; }
-    .dots span {
-      width: 11px; height: 11px; border-radius: 50%;
-    }
-    .dots span:nth-child(1) { background: #ff5f57; }
-    .dots span:nth-child(2) { background: #ffbd2e; }
-    .dots span:nth-child(3) { background: #28c840; }
-
-    .small-btn {
-      border: 1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.08);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 6px 12px;
-      font-size: 13px;
-    }
-    .small-btn:hover { background: rgba(255,255,255,.18); }
-
-    .screen {
-      padding: 26px 20px 30px;
-      min-height: 480px;
-      text-align: center;
-      animation: fadeIn .4s ease;
+    .wrap.shake { animation: shake .55s; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-10px) rotate(-1deg); }
+      40% { transform: translateX(10px) rotate(1deg); }
+      60% { transform: translateX(-7px); }
+      80% { transform: translateX(7px); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* Header and logo */
+    .top { text-align: center; padding: 10px 0 18px; }
 
-    h1 {
-      margin: 6px 0 8px;
-      font-size: clamp(34px, 8vw, 56px);
+    .logo {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      font-family: Impact, "Arial Black", Arial, sans-serif;
+      font-size: clamp(42px, 12vw, 96px);
+      line-height: 1;
+      letter-spacing: -.02em;
       color: var(--green);
-      text-shadow: 3px 3px 0 #3b1d66;
+      text-shadow: 0 0 18px rgba(57, 255, 20, .45), 4px 4px 0 var(--purple);
       cursor: pointer;
       user-select: none;
     }
 
-    h2 {
-      margin: 6px 0 12px;
-      color: var(--yellow);
-      font-size: clamp(22px, 5vw, 30px);
+    .logo::before,
+    .logo::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .logo::before {
+      color: var(--cyan);
+      clip-path: inset(0 0 62% 0);
+      transform: translate(-4px, 0);
+      animation: glitchA 2.6s infinite steps(2);
+    }
+    .logo::after {
+      color: var(--pink);
+      clip-path: inset(58% 0 0 0);
+      transform: translate(4px, 0);
+      animation: glitchB 2.2s infinite steps(2);
     }
 
-    p { line-height: 1.6; }
-    .muted { color: var(--muted); }
+    @keyframes glitchA {
+      0%, 88%, 100% { transform: translate(0); opacity: 0; }
+      90% { transform: translate(-4px, 0); opacity: 1; }
+      95% { transform: translate(3px, 0); opacity: 1; }
+    }
+    @keyframes glitchB {
+      0%, 85%, 100% { transform: translate(0); opacity: 0; }
+      87% { transform: translate(4px, 0); opacity: 1; }
+      93% { transform: translate(-3px, 0); opacity: 1; }
+    }
+    @keyframes hue { to { filter: hue-rotate(360deg); } }
+
+    .tagline {
+      margin: 10px 0 14px;
+      color: var(--muted);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 15px;
+    }
+
+    .top-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+
+    .chip {
+      min-height: 40px;
+      border: 1px solid rgba(0, 240, 255, .5);
+      border-radius: 999px;
+      padding: 8px 15px;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, .08);
+      transition: transform .15s, background .2s;
+    }
+    .chip:hover { transform: translateY(-2px); background: rgba(0, 240, 255, .2); }
+
+    /* Section grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      position: relative;
+      min-width: 0;
+      padding: 22px 20px;
+      border: 2px solid rgba(157, 77, 255, .6);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 0 28px rgba(157, 77, 255, .18), inset 0 0 30px rgba(255, 46, 151, .04);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(255, 46, 151, .22), inset 0 0 30px rgba(255, 46, 151, .05);
+    }
+    .card.wide { grid-column: 1 / -1; }
+
+    .card h2 {
+      margin: 0 0 6px;
+      font-family: Impact, "Arial Black", Arial, sans-serif;
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 400;
+      letter-spacing: .02em;
+      color: var(--yellow);
+    }
+    .card h2::before { content: "> "; color: var(--green); }
+
+    .card .desc { margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 
     .btn {
-      display: inline-block;
-      margin: 8px 6px;
-      padding: 13px 22px;
+      min-height: 44px;
       border: 0;
-      border-radius: 14px;
+      border-radius: 12px;
+      padding: 11px 16px;
+      color: #fff;
       background: linear-gradient(135deg, var(--pink), var(--purple));
-      color: white;
-      font-size: 16px;
       font-weight: bold;
-      box-shadow: 0 6px 0 #5d2b8f;
-      transition: transform .12s, box-shadow .12s;
+      box-shadow: 0 5px 0 #4b1c7a;
+      transition: transform .12s, box-shadow .12s, filter .2s;
     }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #5d2b8f; }
-    .btn.secondary {
-      background: linear-gradient(135deg, #2c3b52, #1e2a3c);
-      box-shadow: 0 6px 0 #101722;
-    }
-    .btn.secret {
-      background: linear-gradient(135deg, var(--green), var(--yellow));
-      color: #20102e;
-      box-shadow: 0 6px 0 #6d8b3b;
+    .btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 2px 0 #4b1c7a; }
+    .btn.alt { background: linear-gradient(135deg, var(--cyan), #3366ff); color: #03101a; box-shadow: 0 5px 0 #1b3f8a; }
+    .btn.ghost { background: transparent; border: 2px solid var(--green); color: var(--green); box-shadow: none; }
+    .btn.green { background: linear-gradient(135deg, var(--green), var(--yellow)); color: #10200a; box-shadow: 0 5px 0 #5b8a1d; }
+    .btn.small { min-height: 36px; padding: 7px 12px; font-size: 14px; }
+
+    .out {
+      min-height: 84px;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px dashed rgba(57, 255, 20, .5);
+      background: rgba(0, 0, 0, .35);
+      font-size: 17px;
+      line-height: 1.55;
+      white-space: pre-line;
+      word-break: break-word;
+      animation: fadeUp .35s ease;
     }
 
-    .btn-row { display: flex; flex-wrap: wrap; justify-content: center; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    /* ===== Stickers ===== */
-    .stickers {
+    input, select {
+      width: 100%;
+      min-height: 44px;
+      border-radius: 12px;
+      border: 2px solid rgba(0, 240, 255, .45);
+      padding: 10px 12px;
+      color: var(--text);
+      background: #120a1f;
+    }
+    input::placeholder { color: #7f6f9f; }
+
+    .field-label { display: block; margin: 8px 0 6px; color: var(--muted); font-size: 14px; }
+
+    .disclaimer {
+      margin: 12px 0 0;
+      color: #8f80b3;
+      font-size: 12px;
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    /* Glitch effect helper */
+    .glitch { position: relative; }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .glitch::before { color: var(--cyan); clip-path: inset(0 0 60% 0); animation: glitchA 1.8s infinite steps(2); }
+    .glitch::after { color: var(--pink); clip-path: inset(60% 0 0 0); animation: glitchB 1.6s infinite steps(2); }
+
+    .glitch-flash { animation: flash .35s steps(3); }
+    @keyframes flash {
+      0% { opacity: .2; transform: translateX(-5px); }
+      50% { opacity: 1; transform: translateX(5px); }
+      100% { transform: none; }
+    }
+
+    /* Scanner */
+    .scan-stage {
+      min-height: 110px;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 18px;
-      margin: 18px 0;
-      flex-wrap: wrap;
+      text-align: center;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(22px, 5vw, 32px);
+      color: var(--green);
+      text-shadow: 0 0 14px rgba(57, 255, 20, .5);
+      border-radius: 14px;
+      background: repeating-linear-gradient(0deg, rgba(57, 255, 20, .05) 0 2px, transparent 2px 4px), #050208;
+      border: 1px solid rgba(57, 255, 20, .35);
+      padding: 10px;
     }
 
+    .bar {
+      height: 18px;
+      margin-top: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #0a0512;
+      border: 2px solid #3d2565;
+    }
+    .bar > div {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink));
+      transition: width .5s ease;
+    }
+
+    /* Runaway button */
+    .dodge-zone {
+      position: relative;
+      height: 220px;
+      border: 2px dashed var(--pink);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255, 46, 151, .05);
+    }
+    .dodge-btn {
+      position: absolute;
+      transition: left .18s ease, top .18s ease, transform .3s;
+      white-space: nowrap;
+    }
+    .dodge-btn.surrender {
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(1.05);
+      background: linear-gradient(135deg, var(--green), var(--yellow));
+      color: #10200a;
+    }
+
+    /* Useless buttons */
+    .useless-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .useless-grid .btn { width: 100%; }
+    .useless-grid .btn:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+    /* Terminal */
+    .terminal {
+      height: 260px;
+      overflow-y: auto;
+      padding: 12px;
+      border-radius: 12px;
+      background: #000;
+      border: 1px solid var(--green);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--green);
+    }
+    .terminal .prompt { color: var(--cyan); }
+    .terminal .err { color: var(--pink); }
+    .term-form { display: flex; gap: 8px; margin-top: 10px; }
+    .term-form input {
+      flex: 1;
+      font-family: Consolas, "Courier New", monospace;
+      border-color: var(--green);
+    }
+    .term-note { color: #7f9f7f; font-size: 12px; margin-top: 8px; font-family: Consolas, monospace; }
+
+    /* Delulu */
+    .delulu-bar { height: 26px; }
+    .delulu-pct {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(40px, 10vw, 64px);
+      color: var(--pink);
+      text-align: center;
+      margin: 8px 0 0;
+    }
+
+    /* Mood buttons */
+    .mood-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .mood-btn {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 2px solid var(--purple);
+      background: rgba(157, 77, 255, .12);
+      font-size: 30px;
+      transition: transform .15s;
+    }
+    .mood-btn:hover { transform: scale(1.12) rotate(-6deg); }
+
+    /* Stickers */
+    .sticker-row { display: flex; justify-content: space-around; gap: 10px; margin: 10px 0; }
     .sticker {
-      width: 120px;
-      height: 120px;
+      width: 110px;
+      height: 110px;
       border: 0;
-      background: transparent;
-      padding: 0;
-      cursor: pointer;
-      transition: transform .2s;
-      animation: bob 2.6s ease-in-out infinite;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .05);
+      font-size: 72px;
+      line-height: 1;
+      animation: bob 2.4s ease-in-out infinite;
     }
     .sticker:nth-child(2) { animation-delay: .4s; }
     .sticker:hover { transform: scale(1.08) rotate(-4deg); }
-    .sticker.bounce { animation: pop .55s ease; }
-    .sticker img, .sticker svg {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 6px 8px rgba(0,0,0,.35));
-    }
-
-    @keyframes bob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
-
+    .sticker.bounce { animation: pop .5s ease; }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
     @keyframes pop {
       0% { transform: scale(1); }
       35% { transform: scale(1.25) rotate(-8deg); }
@@ -192,941 +428,1911 @@
       100% { transform: scale(1); }
     }
 
-    /* ===== Scan ===== */
-    .scan-box {
-      margin: 20px auto;
-      max-width: 480px;
-      text-align: left;
+    .heart-zone { position: relative; height: 60px; overflow: hidden; }
+    .heart {
+      position: absolute;
+      bottom: 0;
+      animation: heartUp 1.8s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes heartUp {
+      to { transform: translateY(-70px) scale(1.2); opacity: 0; }
     }
 
-    .progress-track {
-      height: 22px;
-      background: #0b0713;
-      border: 2px solid #3f2a64;
-      border-radius: 999px;
-      overflow: hidden;
+    .gif-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--cyan);
+      font-size: 14px;
     }
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--green), var(--yellow), var(--pink));
-      transition: width .6s ease;
-    }
+    /* Chat sim */
+    .chat-box { white-space: pre-wrap; font-size: 15px; }
 
-    .scan-line {
-      margin-top: 14px;
-      min-height: 26px;
-      color: var(--green);
-      font-family: Consolas, "Courier New", monospace;
-    }
-
-    .question {
-      margin-top: 14px;
-      padding: 16px;
+    /* Awards */
+    .award-card {
+      text-align: center;
+      padding: 22px 16px;
       border-radius: 14px;
-      background: var(--panel-2);
-      border: 1px solid rgba(255,255,255,.08);
-      text-align: left;
+      border: 3px double var(--yellow);
+      background: linear-gradient(160deg, #2a1846, #0f0520);
     }
-
-    .question h3 {
-      margin: 0 0 10px;
+    .award-title {
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(22px, 5vw, 30px);
       color: var(--yellow);
-      font-size: 17px;
-    }
-
-    .option {
-      display: block;
-      width: 100%;
-      margin: 7px 0;
-      padding: 11px 13px;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 10px;
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      text-align: left;
-      font-size: 15px;
-    }
-    .option:hover { background: rgba(255,255,255,.12); }
-
-    /* ===== Result ===== */
-    .score {
-      font-size: clamp(56px, 14vw, 92px);
-      font-weight: bold;
-      color: var(--pink);
-      text-shadow: 4px 4px 0 #3b1d66;
-      margin: 0;
-    }
-
-    .level {
-      color: var(--green);
-      font-size: 20px;
-      font-weight: bold;
       margin: 6px 0;
     }
+    .award-reason { color: var(--muted); font-size: 15px; }
 
-    .roast {
-      max-width: 500px;
-      margin: 14px auto;
-      padding: 16px;
-      border-radius: 14px;
-      background: var(--panel-2);
-      border: 1px dashed var(--purple);
-      font-size: 16px;
+    /* Achievements */
+    .ach-meter { height: 16px; }
+    .ach-list { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 8px; }
+    .ach-list li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      font-size: 15px;
     }
+    .ach-list li.got { border-color: var(--green); color: var(--green); background: rgba(57, 255, 20, .06); }
+    .ach-list li.locked { color: #7f6f9f; }
 
-    /* ===== Memes ===== */
-    .meme-card {
-      max-width: 500px;
-      margin: 18px auto;
-      padding: 28px 22px;
-      border-radius: 16px;
-      background: linear-gradient(160deg, #2a1846, #180d2b);
-      border: 2px solid var(--yellow);
-      font-size: clamp(18px, 4vw, 23px);
-      font-weight: bold;
-      line-height: 1.5;
-      min-height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: rotate(-1deg);
-      transition: transform .2s;
-    }
-    .meme-card.flip { animation: memeFlip .45s ease; }
-
-    @keyframes memeFlip {
-      0% { transform: rotateX(90deg); opacity: 0; }
-      100% { transform: rotateX(0); opacity: 1; }
-    }
-
-    /* ===== Surprise ===== */
-    .surprise {
+    .ach-stack {
       position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: rgba(5, 2, 12, .92);
-      text-align: center;
-      animation: fadeIn .4s ease;
+      top: 14px;
+      right: 14px;
+      z-index: 350;
+      display: grid;
+      gap: 8px;
+      pointer-events: none;
+      max-width: 86vw;
+    }
+    .ach-toast {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 2px solid var(--yellow);
+      background: #1d0d2f;
+      color: var(--yellow);
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(255, 216, 77, .3);
+      animation: slideIn .4s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(120%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
-    .surprise-box {
-      max-width: 460px;
-      padding: 28px;
-      border-radius: 18px;
-      border: 2px solid var(--green);
-      background: var(--panel);
-    }
-
-    .surprise-box p { font-size: 17px; }
-
-    /* ===== Toast ===== */
+    /* Toast */
     .toast {
       position: fixed;
       left: 50%;
-      bottom: 24px;
-      z-index: 300;
-      transform: translateX(-50%) translateY(30px);
+      bottom: 90px;
+      z-index: 340;
+      transform: translateX(-50%) translateY(20px);
+      max-width: 92vw;
       padding: 12px 18px;
       border-radius: 12px;
-      background: #2b1d44;
-      border: 1px solid var(--yellow);
-      color: var(--yellow);
-      opacity: 0;
-      transition: opacity .25s, transform .25s;
-      pointer-events: none;
-      max-width: 90vw;
+      border: 1px solid var(--cyan);
+      background: #14082a;
+      color: var(--cyan);
       text-align: center;
-    }
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ===== Confetti / falling emoji ===== */
-    .falling {
-      position: fixed;
-      top: -40px;
-      z-index: 150;
+      opacity: 0;
       pointer-events: none;
-      animation: fall linear forwards;
+      transition: opacity .25s, transform .25s;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Floating share button */
+    .float-share {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 330;
+      min-height: 44px;
+      border: 2px solid var(--pink);
+      border-radius: 999px;
+      padding: 10px 16px;
+      color: var(--text);
+      background: rgba(20, 8, 38, .92);
+      box-shadow: 0 0 16px rgba(255, 46, 151, .35);
+      transition: transform .15s;
+    }
+    .float-share:hover { transform: scale(1.05); }
+
+    /* Overlays (random event and ending) */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 360;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(4, 1, 10, .92);
+      animation: fadeUp .3s ease;
+    }
+    .modal {
+      position: relative;
+      width: min(480px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 26px 20px 20px;
+      border: 2px solid var(--cyan);
+      border-radius: 18px;
+      background: #100620;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0, 240, 255, .25);
+    }
+    .modal .big-emoji { font-size: 72px; line-height: 1.1; }
+    .modal .big { font-size: clamp(18px, 4vw, 24px); color: var(--green); }
+    .modal .sysnotif {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--yellow);
+      background: #241a05;
+      color: var(--yellow);
+      font-family: Consolas, "Courier New", monospace;
+      margin-bottom: 10px;
+    }
+    .modal .bar { margin: 10px 0; }
+    .modal .btn-row { justify-content: center; }
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      min-height: 36px;
+      border: 1px solid var(--cyan);
+      border-radius: 10px;
+      padding: 6px 10px;
+      color: var(--cyan);
+      background: transparent;
     }
 
-    @keyframes fall {
-      to { transform: translateY(110vh) rotate(720deg); }
+    .countdown {
+      min-height: 140px;
+      font-family: Impact, "Arial Black", sans-serif;
+      font-size: clamp(80px, 22vw, 140px);
+      color: var(--pink);
+      text-shadow: 0 0 25px rgba(255, 46, 151, .6);
+      line-height: 1;
     }
-
-    /* ===== Secret mode ===== */
-    body.secret h1 {
-      background: linear-gradient(90deg, var(--pink), var(--yellow), var(--green), var(--purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: none;
+    .countdown.pulse { animation: pulseBig .8s ease; }
+    @keyframes pulseBig {
+      0% { transform: scale(1.6); opacity: .2; }
+      100% { transform: scale(1); opacity: 1; }
     }
+    .end-text { min-height: 60px; color: var(--green); font-family: Consolas, "Courier New", monospace; font-size: 16px; }
+    .end-text.glitch-flash { animation: flash .4s steps(3) 3; }
+    .end-reveal { margin-top: 12px; padding: 14px; border-radius: 12px; border: 1px dashed var(--yellow); line-height: 1.6; }
+    .end-reveal h3 { margin: 0 0 8px; color: var(--yellow); font-family: Impact, "Arial Black", sans-serif; font-weight: 400; font-size: 24px; }
 
-    body.shake .app {
-      animation: shake .5s;
+    /* Footer */
+    .footer {
+      margin-top: 30px;
+      padding: 16px;
+      text-align: center;
+      color: #8f80b3;
+      font-size: 13px;
+      font-family: Consolas, "Courier New", monospace;
+      border-top: 1px dashed rgba(157, 77, 255, .4);
     }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      20% { transform: translateX(-8px) rotate(-1deg); }
-      40% { transform: translateX(8px) rotate(1deg); }
-      60% { transform: translateX(-6px); }
-      80% { transform: translateX(6px); }
+    .eye {
+      display: inline-block;
+      min-height: 36px;
+      min-width: 36px;
+      border: 0;
+      background: transparent;
+      font-size: 20px;
+      color: inherit;
+      opacity: .55;
     }
+    .eye:hover { opacity: 1; }
 
-    /* ===== Mobile ===== */
+    noscript p { color: var(--yellow); text-align: center; padding: 20px; }
+
+    /* Mobile */
     @media (max-width: 560px) {
-      .app { margin-top: 14px; }
-      .screen { padding: 20px 14px 24px; }
-      .sticker { width: 96px; height: 96px; }
-      .btn { width: 100%; max-width: 320px; margin: 7px 0; }
-      .btn-row { flex-direction: column; align-items: center; }
+      .wrap { padding-top: 12px; }
+      .card { padding: 18px 14px; }
+      .useless-grid { grid-template-columns: 1fr; }
+      .sticker { width: 96px; height: 96px; font-size: 62px; }
+      .btn { width: 100%; }
+      .btn-row .btn, .btn-row .btn.small { width: auto; }
+      .float-share { bottom: 10px; right: 10px; font-size: 14px; }
+      .toast { bottom: 78px; }
+      .terminal { height: 220px; font-size: 13px; }
     }
 
-    /* ===== Reduced motion ===== */
+    /* Reduced motion */
+    .reduce-motion *,
+    .reduce-motion *::before,
+    .reduce-motion *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    .reduce-motion .floaters { display: none; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation: none !important;
         transition: none !important;
       }
+      .floaters { display: none; }
     }
   </style>
 </head>
 
 <body>
-  <div class="app">
-    <div class="window" id="window">
+  <noscript><p>BRAINROT.exe ko chalane ke liye JavaScript on karo bhai 💀</p></noscript>
 
-      <div class="titlebar">
-        <div class="dots"><span></span><span></span><span></span></div>
-        <div class="titlebar-name">BRAINROT.exe</div>
-        <button class="small-btn" id="soundToggle" type="button">🔊 Sound On</button>
+  <div class="floaters" id="floaters" aria-hidden="true"></div>
+  <div class="burst-layer" id="burstLayer" aria-hidden="true"></div>
+  <div class="ach-stack" id="achStack" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <main class="wrap" id="wrap">
+
+    <!-- ===== HEADER ===== -->
+    <header class="top">
+      <h1 class="logo glitch" id="logo" data-text="BRAINROT.exe" title="Ek secret hai, 7 baar click karo">BRAINROT.exe</h1>
+      <p class="tagline">Where common sense comes to die 💀</p>
+      <div class="top-actions">
+        <button class="chip" id="soundBtn" type="button" aria-pressed="false">🔇 Sound OFF</button>
+        <button class="chip" id="achChip" type="button" aria-label="Achievements dekho">🏅 0/10</button>
       </div>
+    </header>
 
-      <!-- ===== HOME ===== -->
-      <section class="screen" id="home">
-        <h1 id="logo" title="Click me 7 times">BRAINROT.exe</h1>
-        <p class="muted">Apna brainrot level check karo. Bas 3 sawaal, koi jhooth nahi (thoda sa).</p>
+    <div class="grid">
 
-        <div class="stickers">
-          <button class="sticker" data-sticker="dudu" type="button" aria-label="Dudu sticker"></button>
-          <button class="sticker" data-sticker="bubu" type="button" aria-label="Bubu sticker"></button>
-        </div>
-
+      <!-- ===== 1. RANDOM BAKCHODI GENERATOR ===== -->
+      <section class="card" id="sec-jokes" aria-labelledby="h-jokes">
+        <h2 id="h-jokes">Bakchodi Generator</h2>
+        <p class="desc">Har click pe naya joke. Copy bhi kar sakta hai, bhej bhi sakta hai.</p>
+        <div class="out" id="jokeOut" aria-live="polite"></div>
         <div class="btn-row">
-          <button class="btn" id="startScan" type="button">🧠 Start Scan</button>
-          <button class="btn secondary" id="openMemes" type="button">😂 Meme Machine</button>
+          <button class="btn" id="jokeNew" type="button">Naya joke 🎲</button>
+          <button class="btn ghost small" id="jokeCopy" type="button">Copy 📋</button>
+          <button class="btn alt small" id="jokeShare" type="button">Share 📤</button>
         </div>
       </section>
 
-      <!-- ===== SCAN ===== -->
-      <section class="screen hidden" id="scan">
-        <h2>Scanning...</h2>
-        <div class="stickers">
-          <button class="sticker" data-sticker="dudu" type="button" aria-label="Dudu sticker"></button>
+      <!-- ===== 2. BRAINROT SCANNER 3000 ===== -->
+      <section class="card" id="sec-scan" aria-labelledby="h-scan">
+        <h2 id="h-scan">Brainrot Scanner 3000</h2>
+        <p class="desc">Fake futuristic scanner. Result ekdum bakwaas hai, bharosa mat karna.</p>
+        <div class="scan-stage" id="scanStage" aria-live="polite">Ready hai? Scan dabao 👇</div>
+        <div class="bar" aria-hidden="true"><div id="scanFill"></div></div>
+        <div class="out hidden" id="scanOut"></div>
+        <div class="btn-row">
+          <button class="btn" id="scanGo" type="button">Scan shuru karo 🧠</button>
         </div>
+        <p class="disclaimer">⚠️ Ye fictional scanner hai. Koi medical ya scientific result nahi, sirf mazaak.</p>
+      </section>
 
-        <div class="scan-box" id="scanQuestions">
-          <div class="question" id="questionBox"></div>
+      <!-- ===== 3. FRIEND ROAST GENERATOR ===== -->
+      <section class="card wide" id="sec-roast" aria-labelledby="h-roast">
+        <h2 id="h-roast">Friend Roast Generator</h2>
+        <p class="desc">Dost ka naam daalo, category chuno. Roast playful hai, dil pe mat lena 😌</p>
+        <label class="field-label" for="nickname">Dost ka naam (ya khud ka)</label>
+        <input id="nickname" type="text" maxlength="20" placeholder="Bhai ka naam" autocomplete="off" />
+        <label class="field-label" for="roastCat">Category</label>
+        <select id="roastCat">
+          <option value="best">Best friend</option>
+          <option value="admin">Group chat admin</option>
+          <option value="procrastinator">Procrastinator</option>
+          <option value="overthinker">Overthinker</option>
+          <option value="delulu">Delulu person</option>
+          <option value="gamer">Gamer</option>
+          <option value="student">Student</option>
+          <option value="self">Self-roast</option>
+        </select>
+        <div class="btn-row">
+          <button class="btn" id="roastGo" type="button">Roast karo 🔥</button>
         </div>
-
-        <div class="scan-box hidden" id="scanProgress">
-          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-          <div class="scan-line" id="scanLine">Initializing...</div>
+        <div class="out" id="roastOut" aria-live="polite">Naam daalo aur roast karo 👆</div>
+        <div class="btn-row">
+          <button class="btn ghost small" id="roastCopy" type="button">Copy 📋</button>
+          <button class="btn alt small" id="roastShare" type="button">Share 📤</button>
+          <button class="btn secondary small" id="roastDl" type="button">Card PNG 📸</button>
         </div>
       </section>
 
-      <!-- ===== RESULT ===== -->
-      <section class="screen hidden" id="result">
-        <h2>Tera Brainrot Level</h2>
-        <p class="score" id="scoreText">0%</p>
-        <div class="level" id="levelText"></div>
-
-        <div class="stickers">
-          <button class="sticker" data-sticker="bubu" type="button" aria-label="Bubu sticker"></button>
+      <!-- ===== 4. RUNAWAY BUTTON ===== -->
+      <section class="card" id="sec-dodge" aria-labelledby="h-dodge">
+        <h2 id="h-dodge">Runaway Button</h2>
+        <p class="desc">Desktop pe cursor ke paas jaoge toh bhaagega. Phone pe tap karo. 6 baar mein haar maan lega.</p>
+        <div class="dodge-zone" id="dodgeZone">
+          <button class="btn dodge-btn" id="dodgeBtn" type="button">Catch me if you can 🏃</button>
         </div>
-
-        <div class="roast" id="roastText"></div>
-
+        <div class="out" id="dodgeMsg" aria-live="polite">Button ko pakdo, agar pakad sakte ho 😏</div>
         <div class="btn-row">
-          <button class="btn" id="shareCard" type="button">📸 Make Roast Card</button>
-          <button class="btn secondary" id="copyResult" type="button">📋 Copy Result</button>
-          <button class="btn secondary" id="scanAgain" type="button">🔁 Scan Again</button>
-          <button class="btn secret" id="dontPress" type="button">🤫 Don't Press</button>
-        </div>
-
-        <div class="btn-row">
-          <button class="small-btn" id="backHomeFromResult" type="button">⬅ Home</button>
+          <button class="btn ghost small" id="dodgeReset" type="button">Phir se khelo 🔁</button>
         </div>
       </section>
 
-      <!-- ===== MEMES ===== -->
-      <section class="screen hidden" id="memes">
-        <h2>Meme Machine 😂</h2>
-        <p class="muted">Button dabao, random Hinglish meme milega.</p>
+      <!-- ===== 5. USELESS BUTTON FACTORY ===== -->
+      <section class="card" id="sec-useless" aria-labelledby="h-useless">
+        <h2 id="h-useless">Useless Button Factory</h2>
+        <p class="desc">Har button ka apna bekaar kaam hai. Sab try karo.</p>
+        <div class="useless-grid">
+          <button class="btn" type="button" data-useless="judge">Mujhe judge karo 🧐</button>
+          <button class="btn" type="button" data-useless="money">Paisa do 💸</button>
+          <button class="btn" type="button" data-useless="update">Windows update 🪟</button>
+          <button class="btn" type="button" data-useless="sorry">Sorry bolo 🙇</button>
+          <button class="btn" type="button" data-useless="award">Useless award 🏅</button>
+        </div>
+        <div class="out" id="uselessOut" aria-live="polite">Kuch bhi dabao, kuch bhi hoga 🤡</div>
+        <p class="disclaimer" id="uselessCount">Useless clicks: 0</p>
+      </section>
 
-        <div class="meme-card" id="memeCard"></div>
+      <!-- ===== 6. FAKE HACKER TERMINAL ===== -->
+      <section class="card wide" id="sec-terminal" aria-labelledby="h-term">
+        <h2 id="h-term">Fake Hacker Terminal</h2>
+        <p class="desc">Ye SIMULATION hai. Koi real system ya account access nahi hota, sirf jokes.</p>
+        <div class="terminal" id="termOut" role="log" aria-live="polite"></div>
+        <form class="term-form" id="termForm" autocomplete="off">
+          <input id="termIn" type="text" placeholder="help likho..." aria-label="Terminal command" />
+          <button class="btn small" type="submit">Enter ⏎</button>
+        </form>
+        <p class="term-note">Commands: help, hack, love, money, roast, mood, ls, clear, exit</p>
+      </section>
 
+      <!-- ===== 7. DELULU METER ===== -->
+      <section class="card" id="sec-delulu" aria-labelledby="h-delulu">
+        <h2 id="h-delulu">Delulu Meter</h2>
+        <p class="desc">Meter tera delusion level naapega. Sach ya jhooth, koi nahi jaanta.</p>
+        <div class="bar delulu-bar" aria-hidden="true"><div id="deluluBar"></div></div>
+        <p class="delulu-pct" id="deluluPct">0%</p>
+        <div class="out" id="deluluOut" aria-live="polite"></div>
         <div class="btn-row">
-          <button class="btn" id="nextMeme" type="button">Next Meme 🎲</button>
-          <button class="btn secondary" id="backHomeFromMemes" type="button">⬅ Home</button>
+          <button class="btn" id="deluluGo" type="button">Meter chalao 🌀</button>
+          <button class="btn alt small hidden" id="deluluShare" type="button">Share 📤</button>
+        </div>
+      </section>
+
+      <!-- ===== 8. RANDOM LIFE ADVICE ===== -->
+      <section class="card" id="sec-advice" aria-labelledby="h-advice">
+        <h2 id="h-advice">Random Life Advice</h2>
+        <p class="desc">Serious motivational speaker mode: ON. Advice ki quality: OFF.</p>
+        <div class="out" id="adviceOut" aria-live="polite"></div>
+        <div class="btn-row">
+          <button class="btn" id="adviceNew" type="button">Aur advice 🎤</button>
+          <button class="btn ghost small" id="adviceCopy" type="button">Copy 📋</button>
+        </div>
+      </section>
+
+      <!-- ===== 9. MOOD DETECTOR ===== -->
+      <section class="card" id="sec-mood" aria-labelledby="h-mood">
+        <h2 id="h-mood">Mood Detector</h2>
+        <p class="desc">Ek emoji chuno, mood report milegi.</p>
+        <div class="mood-row" role="group" aria-label="Mood chuno">
+          <button class="mood-btn" type="button" data-mood="😴" aria-label="Sleepy">😴</button>
+          <button class="mood-btn" type="button" data-mood="😭" aria-label="Crying">😭</button>
+          <button class="mood-btn" type="button" data-mood="😤" aria-label="Angry">😤</button>
+          <button class="mood-btn" type="button" data-mood="🤡" aria-label="Clown">🤡</button>
+          <button class="mood-btn" type="button" data-mood="🥱" aria-label="Bored">🥱</button>
+          <button class="mood-btn" type="button" data-mood="😎" aria-label="Confident">😎</button>
+        </div>
+        <div class="out" id="moodOut" aria-live="polite">Emoji dabao, report aayegi 📋</div>
+        <div class="btn-row">
+          <button class="btn ghost small" id="moodCopy" type="button">Copy 📋</button>
+        </div>
+      </section>
+
+      <!-- ===== 10. DUDU-BUBU STICKER ZONE ===== -->
+      <section class="card" id="sec-stickers" aria-labelledby="h-stickers">
+        <h2 id="h-stickers">Dudu-Bubu Sticker Zone</h2>
+        <p class="desc">Dudu aur Bubu se baat karo. Ye emoji stickers hain, koi copyrighted artwork nahi.</p>
+        <div class="sticker-row">
+          <button class="sticker" id="stickDudu" type="button" aria-label="Dudu sticker">🧸</button>
+          <button class="sticker" id="stickBubu" type="button" aria-label="Bubu sticker">🐰</button>
+        </div>
+        <div class="heart-zone" id="heartZone" aria-hidden="true"></div>
+        <div class="out" id="stickerOut" aria-live="polite">Kisi sticker pe click karo 👆</div>
+        <a class="gif-link" href="https://giphy.com/search/bear-bunny-funny" target="_blank" rel="noopener noreferrer">🔍 Bear-bunny GIFs Giphy pe dhundho (external site)</a>
+      </section>
+
+      <!-- ===== 11. GROUP CHAT SURVIVAL SIMULATOR ===== -->
+      <section class="card" id="sec-chat" aria-labelledby="h-chat">
+        <h2 id="h-chat">Group Chat Survival</h2>
+        <p class="desc">Fictional group chat. Kisi real insaan se koi lena dena nahi 😭</p>
+        <div class="out chat-box" id="chatOut" aria-live="polite"></div>
+        <div class="btn-row">
+          <button class="btn" id="chatNew" type="button">Nayi chat 💬</button>
+          <button class="btn ghost small" id="chatCopy" type="button">Copy 📋</button>
+          <button class="btn alt small" id="chatShare" type="button">Share 📤</button>
+        </div>
+      </section>
+
+      <!-- ===== 12. EXCUSE GENERATOR ===== -->
+      <section class="card" id="sec-excuse" aria-labelledby="h-excuse">
+        <h2 id="h-excuse">Excuse Generator</h2>
+        <p class="desc">Ye sirf jokes hain. Asli life mein ye bahane mat dena 🙏</p>
+        <label class="field-label" for="excCat">Kis cheez ke liye?</label>
+        <select id="excCat">
+          <option value="late">Late aana</option>
+          <option value="study">Padhai na karna</option>
+          <option value="messages">Message ignore karna</option>
+          <option value="deadline">Deadline miss karna</option>
+          <option value="sleep">Din bhar soye rehna</option>
+          <option value="birthday">Birthday bhool jaana</option>
+        </select>
+        <div class="btn-row">
+          <button class="btn small" id="excBelievable" type="button" aria-pressed="true">More believable</button>
+          <button class="btn small secondary" id="excUnhinged" type="button" aria-pressed="false">Absolutely unhinged</button>
+        </div>
+        <div class="out" id="excOut" aria-live="polite">Category chuno aur button dabao 🎭</div>
+        <div class="btn-row">
+          <button class="btn ghost small" id="excNew" type="button">Naya bahana 🎲</button>
+          <button class="btn ghost small" id="excCopy" type="button">Copy 📋</button>
+        </div>
+      </section>
+
+      <!-- ===== 13. FAKE AWARDS CEREMONY ===== -->
+      <section class="card" id="sec-awards" aria-labelledby="h-awards">
+        <h2 id="h-awards">Fake Awards Ceremony</h2>
+        <p class="desc">Tujhe award milega. Mana mat karna, certificate already print ho gaya hai.</p>
+        <div class="award-card" id="awardCard" aria-live="polite">
+          <p class="award-reason">Award dabao, tera naam announce hoga 🎤</p>
+        </div>
+        <div class="btn-row">
+          <button class="btn" id="awardGo" type="button">Award do 🏆</button>
+          <button class="btn alt small" id="awardShare" type="button">Share 📤</button>
+          <button class="btn secondary small" id="awardDl" type="button">Certificate PNG 📸</button>
+        </div>
+      </section>
+
+      <!-- ===== 15. RANDOM INTERNET EVENT ===== -->
+      <section class="card" id="sec-event" aria-labelledby="h-event">
+        <h2 id="h-event">Random Internet Event</h2>
+        <p class="desc">Button dabao, kuch bhi ho sakta hai. Band karne ka button hamesha milega.</p>
+        <div class="btn-row">
+          <button class="btn green" id="eventGo" type="button">Random event 🎲</button>
+        </div>
+      </section>
+
+      <!-- ===== 17. ACHIEVEMENTS ===== -->
+      <section class="card" id="sec-ach" aria-labelledby="h-ach">
+        <h2 id="h-ach">Achievements</h2>
+        <p class="desc">Sirf is browser mein save hota hai. Koi server ya tracking nahi.</p>
+        <div class="bar ach-meter" aria-hidden="true"><div id="achBar"></div></div>
+        <p class="disclaimer" id="achCount">0 / 10 unlocked</p>
+        <p class="disclaimer" id="secretCount">Secrets found: 0 / 5</p>
+        <ul class="ach-list" id="achList"></ul>
+      </section>
+
+      <!-- ===== 18. SECRET FINAL ENDING ===== -->
+      <section class="card wide" id="sec-ending" aria-labelledby="h-ending">
+        <h2 id="h-ending">Secret Final Scene</h2>
+        <p class="desc">Locked hai. Thoda explore karo, achievements kamao, phir dekho kya hota hai.</p>
+        <p class="disclaimer" id="endingHint">Locked 🔒</p>
+        <div class="btn-row">
+          <button class="btn" id="endingGo" type="button" disabled>Final scene kholo 🔓</button>
         </div>
       </section>
 
     </div>
+
+    <footer class="footer">
+      <p>BRAINROT.exe is a joke site. Sab kuch fake hai, sirf entertainment ke liye.</p>
+      <p>
+        <button class="eye" id="eye" type="button" aria-label="Suspicious eye">👁</button>
+        Trust karo, koi real data nahi bhej raha.
+      </p>
+    </footer>
+  </main>
+
+  <button class="float-share" id="floatShare" type="button">📤 Share BRAINROT</button>
+
+  <!-- Random event overlay -->
+  <div class="overlay hidden" id="eventLayer" role="dialog" aria-modal="true" aria-label="Random internet event">
+    <div class="modal">
+      <button class="modal-close" id="eventClose" type="button">✕ Band karo</button>
+      <div id="eventBox"></div>
+    </div>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <!-- Surprise ending overlay -->
-  <div class="surprise hidden" id="surprise" role="dialog" aria-modal="true">
-    <div class="surprise-box">
-      <h2 id="surpriseTitle">Shutting down BRAINROT.exe...</h2>
-      <p id="surpriseText"></p>
-      <button class="btn" id="surpriseRestart" type="button">Restart 🔁</button>
+  <!-- Secret ending overlay -->
+  <div class="overlay hidden" id="endingLayer" role="dialog" aria-modal="true" aria-label="Secret final scene">
+    <div class="modal">
+      <div class="countdown" id="endCount" aria-live="assertive"></div>
+      <div class="end-text" id="endText"></div>
+      <div class="end-reveal hidden" id="endReveal">
+        <h3 id="endRevealTitle"></h3>
+        <p id="endRevealBody"></p>
+      </div>
+      <div class="btn-row hidden" id="endActions">
+        <button class="btn green" id="endShare" type="button">Share kar 📤</button>
+        <button class="btn ghost small" id="endClose" type="button">Wapas chal bhai ✕</button>
+      </div>
     </div>
   </div>
 
   <script>
-    /* ==========================================================
-       CONFIG — change these to add your own GIFs
-       Put a direct .gif link (ends with .gif) to replace the SVG.
-       ========================================================== */
-    const CONFIG = {
-      dudu: { name: "Dudu", gif: "" },
-      bubu: { name: "Bubu", gif: "" }
-    };
+    /* =========================================================
+       BRAINROT.exe — SCRIPT
+       All content is local. No server, no tracking, no login.
+       ========================================================= */
+    "use strict";
 
-    /* ==========================================================
-       HELPERS
-       ========================================================== */
-    const $ = id => document.getElementById(id);
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-    const randomItem = list => list[Math.floor(Math.random() * list.length)];
+    /* ---------- Helpers ---------- */
+    const $ = (id) => document.getElementById(id);
+    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) document.body.classList.add("reduce-motion");
 
-    function showScreen(name) {
-      ["home", "scan", "result", "memes"].forEach(screen => {
-        $(screen).classList.toggle("hidden", screen !== name);
-      });
-    }
+    const SITE_SHARE_TEXT = "BRAINROT.exe 💀 — Where common sense comes to die. Dekh le bhai, tera brain bhi check ho jayega 😂";
+    const SIGN = "— BRAINROT.exe 💀";
 
-    let toastTimer = null;
-    function showToast(message) {
-      const toast = $("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
-    }
+    /* ---------- Session state (not stored) ---------- */
+    const stats = { jokes: 0, roasts: 0, scans: 0, useless: 0, terminal: 0, awards: 0 };
+    const secretsFound = new Set();
+    const SECRET_NEEDED = 3;
+    const ENDING_NEED = 7;
 
-    function confetti(emojis = ["🧠", "😂", "💀", "✨", "🐣", "🔥"], count = 40) {
-      for (let i = 0; i < count; i++) {
-        const piece = document.createElement("span");
-        piece.className = "falling";
-        piece.textContent = randomItem(emojis);
-        piece.style.left = Math.random() * 100 + "vw";
-        piece.style.fontSize = 18 + Math.random() * 22 + "px";
-        piece.style.animationDuration = 2 + Math.random() * 2 + "s";
-        document.body.appendChild(piece);
-        setTimeout(() => piece.remove(), 4200);
-      }
-    }
-
-    function shakeScreen() {
-      document.body.classList.add("shake");
-      setTimeout(() => document.body.classList.remove("shake"), 600);
-    }
-
-    /* ==========================================================
-       SOUND EFFECTS (Web Audio, no files needed)
-       ========================================================== */
+    /* ---------- Sound (Web Audio, OFF by default) ---------- */
+    let soundOn = false;
     let audioCtx = null;
-    let soundOn = true;
 
-    function getAudio() {
-      if (!audioCtx) {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return null;
-        audioCtx = new AudioCtx();
-      }
-      if (audioCtx.state === "suspended") audioCtx.resume();
-      return audioCtx;
-    }
-
-    function tone(freq, duration = 0.1, type = "square", volume = 0.05, delay = 0) {
+    function beep(freq = 600, dur = 0.08, type = "square", vol = 0.04, delay = 0) {
       if (!soundOn) return;
-      const ctx = getAudio();
-      if (!ctx) return;
-
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      const start = ctx.currentTime + delay;
-
-      osc.type = type;
-      osc.frequency.setValueAtTime(freq, start);
-      gain.gain.setValueAtTime(volume, start);
-      gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(start);
-      osc.stop(start + duration);
+      try {
+        audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const t = audioCtx.currentTime + delay;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, t);
+        gain.gain.setValueAtTime(vol, t);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t);
+        osc.stop(t + dur + 0.02);
+      } catch (error) {
+        // Audio unsupported: silently skip
+      }
     }
 
     const sfx = {
-      click()   { tone(880, 0.05, "square", 0.03); },
-      blip()    { tone(660, 0.06, "triangle", 0.04); },
-      scan()    { [0, 0.08, 0.16].forEach(d => tone(400 + Math.random() * 500, 0.07, "sawtooth", 0.02, d)); },
-      done()    { [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.15, "triangle", 0.05, i * 0.09)); },
-      buzz()    { tone(160, 0.35, "sawtooth", 0.05); },
-      boing()   { tone(300, 0.25, "sine", 0.06); tone(600, 0.12, "sine", 0.04, 0.1); },
-      secret()  { [784, 988, 1175, 1568].forEach((f, i) => tone(f, 0.12, "square", 0.03, i * 0.07)); }
+      click: () => beep(880, 0.05, "square", 0.03),
+      blip: () => beep(660, 0.06, "triangle", 0.04),
+      scan: () => [0, 0.07, 0.14].forEach((d) => beep(300 + Math.random() * 700, 0.06, "sawtooth", 0.02, d)),
+      reveal: () => [523, 659, 784, 1047].forEach((f, i) => beep(f, 0.15, "triangle", 0.05, i * 0.09)),
+      unlock: () => [784, 988, 1319].forEach((f, i) => beep(f, 0.12, "square", 0.03, i * 0.08)),
+      buzz: () => beep(140, 0.35, "sawtooth", 0.05),
+      boing: () => { beep(300, 0.2, "sine", 0.06); beep(600, 0.1, "sine", 0.04, 0.1); }
     };
 
-    $("soundToggle").addEventListener("click", () => {
+    $("soundBtn").addEventListener("click", () => {
       soundOn = !soundOn;
-      $("soundToggle").textContent = soundOn ? "🔊 Sound On" : "🔇 Sound Off";
+      $("soundBtn").textContent = soundOn ? "🔊 Sound ON" : "🔇 Sound OFF";
+      $("soundBtn").setAttribute("aria-pressed", String(soundOn));
       if (soundOn) sfx.click();
     });
 
-    /* ==========================================================
-       STICKERS — Dudu and Bubu (SVG) or GIF
-       ========================================================== */
-    const svgDudu = `
-      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="60" cy="66" rx="44" ry="40" fill="#ffd84d" stroke="#3b1d66" stroke-width="4"/>
-        <circle cx="45" cy="58" r="6" fill="#3b1d66"/>
-        <circle cx="75" cy="58" r="6" fill="#3b1d66"/>
-        <path d="M45 78 Q60 92 75 78" fill="none" stroke="#3b1d66" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="36" cy="74" r="5" fill="#ff4fa3" opacity=".7"/>
-        <circle cx="84" cy="74" r="5" fill="#ff4fa3" opacity=".7"/>
-        <path d="M36 32 Q40 14 56 26" fill="none" stroke="#3b1d66" stroke-width="4" stroke-linecap="round"/>
-        <path d="M84 32 Q80 14 64 26" fill="none" stroke="#3b1d66" stroke-width="4" stroke-linecap="round"/>
-      </svg>`;
-
-    const svgBubu = `
-      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <path d="M30 40 L24 14 L48 30 Z" fill="#a77bff" stroke="#3b1d66" stroke-width="4" stroke-linejoin="round"/>
-        <path d="M90 40 L96 14 L72 30 Z" fill="#a77bff" stroke="#3b1d66" stroke-width="4" stroke-linejoin="round"/>
-        <rect x="20" y="30" width="80" height="72" rx="36" fill="#a77bff" stroke="#3b1d66" stroke-width="4"/>
-        <circle cx="46" cy="66" r="8" fill="white"/>
-        <circle cx="74" cy="66" r="8" fill="white"/>
-        <circle cx="48" cy="67" r="3.5" fill="#3b1d66"/>
-        <circle cx="76" cy="67" r="3.5" fill="#3b1d66"/>
-        <ellipse cx="60" cy="86" rx="8" ry="5" fill="#3b1d66"/>
-      </svg>`;
-
-    function renderStickers() {
-      document.querySelectorAll("[data-sticker]").forEach(button => {
-        const key = button.dataset.sticker;
-        const config = CONFIG[key];
-        button.innerHTML = "";
-
-        if (config.gif) {
-          const img = document.createElement("img");
-          img.src = config.gif;
-          img.alt = config.name;
-          button.appendChild(img);
-        } else {
-          button.insertAdjacentHTML("beforeend", key === "dudu" ? svgDudu : svgBubu);
-        }
-      });
+    /* ---------- Toast and notifications ---------- */
+    let toastTimer = null;
+    function toast(message) {
+      const el = $("toast");
+      el.textContent = message;
+      el.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
     }
 
-    document.addEventListener("click", event => {
-      const sticker = event.target.closest("[data-sticker]");
-      if (!sticker) return;
-
-      sticker.classList.remove("bounce");
-      void sticker.offsetWidth;
-      sticker.classList.add("bounce");
-      sfx.boing();
-
-      const name = CONFIG[sticker.dataset.sticker].name;
-      showToast(`${name}: ${randomItem([
-        "Bhai itna mat dabao 😭",
-        "Main theek hoon, tu bata",
-        "Dudu ka mood: 60% chai",
-        "Bubu bol raha: scroll band kar 💀",
-        "Haan bol bhai, kya chal raha hai?"
-      ])}`);
-    });
-
-    /* ==========================================================
-       HOME + NAVIGATION
-       ========================================================== */
-    $("startScan").addEventListener("click", () => {
-      sfx.click();
-      startScan();
-    });
-
-    $("openMemes").addEventListener("click", () => {
-      sfx.click();
-      showScreen("memes");
-      showMeme();
-    });
-
-    ["backHomeFromResult", "backHomeFromMemes"].forEach(id => {
-      $(id).addEventListener("click", () => {
-        sfx.click();
-        showScreen("home");
-      });
-    });
-
-    /* ==========================================================
-       SCAN QUESTIONS + STAGES
-       ========================================================== */
-    const questions = [
-      {
-        q: "Subah uthke sabse pehle kya dekhte ho?",
-        options: [
-          { text: "Chai aur paani", points: 5 },
-          { text: "Phone ki notifications", points: 15 },
-          { text: "Reels, bina sochey 😭", points: 25 }
-        ]
-      },
-      {
-        q: "Raat ko time pe so jaate ho?",
-        options: [
-          { text: "8 baje so jaata hoon", points: 5 },
-          { text: "Kabhi kabhi 2 baje", points: 15 },
-          { text: "Sone ka plan hi nahi hota", points: 25 }
-        ]
-      },
-      {
-        q: "Koi meme dekhke kya karte ho?",
-        options: [
-          { text: "Bas ek smile", points: 5 },
-          { text: "Group mein bhej dena", points: 15 },
-          { text: "Screenshot, phir 40 minute scroll", points: 25 }
-        ]
-      }
-    ];
-
-    const scanStages = [
-      "Wi-Fi level check ho raha hai...",
-      "Reels ki count gin raha hoon...",
-      "Bhai-level energy detect ho rahi hai...",
-      "Dudu se permission le raha hoon...",
-      "Result ready hai! 🎉"
-    ];
-
-    let answerTotal = 0;
-    let currentQuestion = 0;
-    let scanning = false;
-
-    function startScan() {
-      answerTotal = 0;
-      currentQuestion = 0;
-      scanning = false;
-      $("scanQuestions").classList.remove("hidden");
-      $("scanProgress").classList.add("hidden");
-      showScreen("scan");
-      renderStickers();
-      showQuestion();
+    function achToast(text) {
+      const div = document.createElement("div");
+      div.className = "ach-toast";
+      div.textContent = "🏅 " + text;
+      $("achStack").appendChild(div);
+      setTimeout(() => div.remove(), 3600);
     }
 
-    function showQuestion() {
-      const item = questions[currentQuestion];
-      const box = $("questionBox");
-
-      box.innerHTML = `
-        <h3>${currentQuestion + 1}/${questions.length}. ${item.q}</h3>
-        ${item.options.map((opt, i) =>
-          `<button class="option" type="button" data-index="${i}">${opt.text}</button>`
-        ).join("")}
-      `;
-
-      box.querySelectorAll(".option").forEach(button => {
-        button.addEventListener("click", () => {
-          if (scanning) return;
-          sfx.blip();
-          answerTotal += item.options[Number(button.dataset.index)].points;
-          currentQuestion++;
-
-          if (currentQuestion < questions.length) {
-            showQuestion();
-          } else {
-            runScanStages();
-          }
-        });
-      });
-    }
-
-    async function runScanStages() {
-      scanning = true;
-      $("scanQuestions").classList.add("hidden");
-      $("scanProgress").classList.remove("hidden");
-
-      const fill = $("progressFill");
-      const line = $("scanLine");
-
-      for (let i = 0; i < scanStages.length; i++) {
-        line.textContent = scanStages[i];
-        fill.style.width = `${((i + 1) / scanStages.length) * 100}%`;
-        sfx.scan();
-        await sleep(800);
-      }
-
-      await sleep(300);
-      sfx.done();
-      showResult();
-    }
-
-    /* ==========================================================
-       RESULT + ROASTS
-       ========================================================== */
-    const levels = [
-      {
-        min: 0, max: 30,
-        name: "Touch Ghas Level 🌱",
-        roasts: [
-          "Tu toh almost normal hai bhai, thoda suspicious hai.",
-          "Phone rakh diya? Kaun hai tu, real wala?",
-          "Itna healthy brain dekh ke Wi-Fi bhi shock mein hai."
-        ]
-      },
-      {
-        min: 31, max: 60,
-        name: "Normal Bhai Level 📱",
-        roasts: [
-          "Thoda reels, thoda padhai, thoda chai. Balanced scene hai.",
-          "Tu Insta kholta hai aur 'bas 5 minute' bolta hai. Liar.",
-          "Brain abhi chal raha hai, bas thoda hang ho jaata hai."
-        ]
-      },
-      {
-        min: 61, max: 85,
-        name: "Reel Shaheed 💀",
-        roasts: [
-          "Tu reel dekhne aaya tha, reel ne tujhe dekh liya.",
-          "Itna scroll kiya hai ki thumb pe bhi ab muscle aa gayi.",
-          "Tera brain ab 0.5x speed pe chal raha hai, bhai."
-        ]
-      },
-      {
-        min: 86, max: 100,
-        name: "Certified Brainrot Ustaad 👑",
-        roasts: [
-          "Bhai tu toh ministry of brainrot ka HOD hai.",
-          "Skibidi bolke tu ghar ka Wi-Fi bhi confuse kar deta hai.",
-          "Certified. Framed. Laminated. Bhai bas phone chhod de ek baar. 😭"
-        ]
-      }
-    ];
-
-    let finalScore = 0;
-    let finalLevel = levels[0];
-    let finalRoast = "";
-
-    function showResult() {
-      // Quiz total (max 75) + random scan noise (0 to 25)
-      finalScore = Math.min(100, answerTotal + Math.floor(Math.random() * 26));
-      finalLevel = levels.find(l => finalScore >= l.min && finalScore <= l.max) || levels[levels.length - 1];
-      finalRoast = randomItem(finalLevel.roasts);
-
-      $("scoreText").textContent = `${finalScore}%`;
-      $("levelText").textContent = finalLevel.name;
-      $("roastText").textContent = `"${finalRoast}"`;
-
-      showScreen("result");
-      renderStickers();
-
-      if (finalScore >= 86) {
-        sfx.secret();
-        confetti(["👑", "💀", "🧠", "✨"], 30);
-      } else if (finalScore <= 30) {
-        sfx.buzz();
+    /* ---------- Falling emoji bursts ---------- */
+    function burst(emojis = ["🧠", "😂", "💀", "✨"], count = 30) {
+      if (reduceMotion) return;
+      const layer = $("burstLayer");
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement("span");
+        span.className = "burst";
+        span.textContent = pick(emojis);
+        span.style.left = Math.random() * 100 + "vw";
+        span.style.fontSize = 18 + Math.random() * 22 + "px";
+        span.style.animationDuration = 1.8 + Math.random() * 1.6 + "s";
+        layer.appendChild(span);
+        setTimeout(() => span.remove(), 3600);
       }
     }
 
-    $("scanAgain").addEventListener("click", () => {
-      sfx.click();
-      startScan();
-    });
+    /* ---------- Background floating emojis ---------- */
+    function initFloaters() {
+      if (reduceMotion) return;
+      const layer = $("floaters");
+      const emojis = ["💀", "🧠", "😂", "🐰", "🧸", "✨", "🔥", "👾", "🫠", "📱"];
+      for (let i = 0; i < 14; i++) {
+        const span = document.createElement("span");
+        span.textContent = pick(emojis);
+        span.style.left = Math.random() * 100 + "%";
+        span.style.fontSize = 16 + Math.random() * 18 + "px";
+        span.style.animationDuration = 12 + Math.random() * 16 + "s";
+        span.style.animationDelay = -Math.random() * 20 + "s";
+        layer.appendChild(span);
+      }
+    }
 
-    $("copyResult").addEventListener("click", async () => {
-      sfx.click();
-      const text = `BRAINROT.exe 🧠\nMera level: ${finalScore}% — ${finalLevel.name}\n"${finalRoast}"\nTu bhi check kar bhai!`;
-
+    /* ---------- Clipboard and sharing (only report success when confirmed) ---------- */
+    async function copyText(text) {
       try {
-        await navigator.clipboard.writeText(text);
-        showToast("Copy ho gaya! Ab group mein bhej de 😈");
-      } catch {
-        showToast("Copy nahi ho paya. Manually copy karo.");
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (error) {
+        // Fall through to the older copy method
       }
-    });
+      try {
+        const area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.opacity = "0";
+        document.body.appendChild(area);
+        area.select();
+        const ok = document.execCommand("copy");
+        area.remove();
+        return ok;
+      } catch (error) {
+        return false;
+      }
+    }
 
-    /* ==========================================================
-       ROAST CARD (canvas PNG, shareable)
-       ========================================================== */
-    function wrapText(ctx, text, maxWidth) {
-      const words = text.split(" ");
+    async function copyAndReport(text) {
+      const ok = await copyText(text);
+      toast(ok ? "Copy ho gaya! 📋" : "Copy nahi ho paya. Text select karke manually copy karo.");
+    }
+
+    async function shareText(text) {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: "BRAINROT.exe", text, url: location.href });
+          toast("Share ho gaya! 🚀");
+          return;
+        } catch (error) {
+          if (error.name === "AbortError") return; // User closed the share sheet
+        }
+      }
+      const ok = await copyText(text + "\n" + location.href);
+      toast(ok
+        ? "Share nahi khul raha, text copy kar liya. Ab group mein paste kar 😈"
+        : "Share nahi ho paya. Text manually copy karo.");
+    }
+
+    function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    }
+
+    async function shareCardBlob(blob, filename, text) {
+      const file = new File([blob], filename, { type: "image/png" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: "BRAINROT.exe", text });
+          toast("Card share ho gaya! 🚀");
+          return;
+        } catch (error) {
+          if (error.name === "AbortError") return;
+        }
+      }
+      downloadBlob(blob, filename);
+      toast("Card download start ho gaya 📸 (Screenshot bhi le sakta hai)");
+    }
+
+    /* ---------- Canvas card generator (PNG) ---------- */
+    const PALETTES = [
+      ["#2a0845", "#ff2e97", "#39ff14"],
+      ["#03131c", "#00f0ff", "#ffd84d"],
+      ["#14002b", "#9d4dff", "#ff2e97"],
+      ["#06120a", "#39ff14", "#00f0ff"]
+    ];
+
+    function drawWrapped(ctx, text, cx, y, maxWidth, lineHeight, font, color) {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      ctx.textAlign = "center";
+      const words = String(text).split(/\s+/);
       const lines = [];
       let line = "";
-
-      words.forEach(word => {
-        const test = line ? `${line} ${word}` : word;
+      for (const word of words) {
+        const test = line ? line + " " + word : word;
         if (ctx.measureText(test).width > maxWidth && line) {
           lines.push(line);
           line = word;
         } else {
           line = test;
         }
-      });
-
+      }
       if (line) lines.push(line);
-      return lines;
+      lines.forEach((l, i) => ctx.fillText(l, cx, y + i * lineHeight));
+      return y + Math.max(0, lines.length - 1) * lineHeight;
     }
 
-    function makeRoastCardBlob() {
-      return new Promise(resolve => {
+    function makeCard({ kicker = "", headline = "", tag = "", body = "" }) {
+      return new Promise((resolve) => {
         const canvas = document.createElement("canvas");
         canvas.width = 1080;
         canvas.height = 1350;
         const ctx = canvas.getContext("2d");
+        if (!ctx) { resolve(null); return; }
 
-        // Background
-        const bg = ctx.createLinearGradient(0, 0, 1080, 1350);
-        bg.addColorStop(0, "#2a1846");
-        bg.addColorStop(1, "#0d0818");
-        ctx.fillStyle = bg;
+        const [bg, accent, accent2] = pick(PALETTES);
+        const grad = ctx.createLinearGradient(0, 0, 1080, 1350);
+        grad.addColorStop(0, bg);
+        grad.addColorStop(1, "#050008");
+        ctx.fillStyle = grad;
         ctx.fillRect(0, 0, 1080, 1350);
 
-        // Window frame
-        ctx.strokeStyle = "#a77bff";
-        ctx.lineWidth = 12;
+        ctx.fillStyle = "rgba(255,255,255,0.035)";
+        for (let y = 0; y < 1350; y += 6) ctx.fillRect(0, y, 1080, 2);
+
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = 14;
         ctx.strokeRect(40, 40, 1000, 1270);
 
-        ctx.fillStyle = "#3b1d66";
-        ctx.fillRect(40, 40, 1000, 90);
-        ctx.fillStyle = "#f5efff";
-        ctx.font = "bold 40px Trebuchet MS, Arial";
-        ctx.fillText("BRAINROT.exe", 80, 100);
-
-        // Title
-        ctx.fillStyle = "#7dff9e";
-        ctx.font = "bold 62px Trebuchet MS, Arial";
-        ctx.textAlign = "center";
-        ctx.fillText("Brainrot Level", 540, 260);
-
-        // Score
-        ctx.fillStyle = "#ff4fa3";
-        ctx.font = "bold 230px Trebuchet MS, Arial";
-        ctx.fillText(`${finalScore}%`, 540, 520);
-
-        // Level
-        ctx.fillStyle = "#ffd84d";
-        ctx.font = "bold 56px Trebuchet MS, Arial";
-        ctx.fillText(finalLevel.name, 540, 610);
-
-        // Roast
-        ctx.fillStyle = "#f5efff";
-        ctx.font = "italic 42px Trebuchet MS, Arial";
+        ctx.font = "bold 44px Consolas, monospace";
         ctx.textAlign = "left";
-        const lines = wrapText(ctx, `"${finalRoast}"`, 860);
-        lines.forEach((text, i) => {
-          ctx.fillText(text, 110, 720 + i * 60);
-        });
+        ctx.fillStyle = accent;
+        ctx.fillText("BRAINROT.exe", 90, 130);
+        ctx.textAlign = "right";
+        ctx.fillStyle = accent2;
+        ctx.fillText("● LIVE", 990, 130);
 
-        // Footer
         ctx.textAlign = "center";
-        ctx.fillStyle = "#b9a9d6";
-        ctx.font = "bold 38px Trebuchet MS, Arial";
-        ctx.fillText("Tu bhi check kar bhai 😈", 540, 1220);
+        ctx.fillStyle = accent2;
+        ctx.font = "bold 40px Consolas, monospace";
+        ctx.fillText(kicker.toUpperCase(), 540, 260);
 
-        canvas.toBlob(blob => resolve(blob), "image/png");
+        let y = drawWrapped(ctx, headline, 540, 380, 880, 104,
+          "900 96px Impact, 'Arial Black', Arial, sans-serif", "#ffffff");
+        if (tag) {
+          y = drawWrapped(ctx, tag, 540, y + 110, 880, 90, "bold 70px Arial, sans-serif", accent);
+        }
+        y = drawWrapped(ctx, body, 540, y + 110, 860, 66, "46px Arial, sans-serif", "#f5efff");
+
+        ctx.textAlign = "center";
+        ctx.fillStyle = accent2;
+        ctx.font = "bold 42px Consolas, monospace";
+        ctx.fillText("Tu bhi check kar bhai 😈", 540, 1230);
+
+        canvas.toBlob((blob) => resolve(blob), "image/png");
       });
     }
 
-    $("shareCard").addEventListener("click", async () => {
-      sfx.click();
-      const blob = await makeRoastCardBlob();
+    async function cardAction(options, mode, shareMessage) {
+      const blob = await makeCard(options);
       if (!blob) {
-        showToast("Card nahi ban paya.");
+        toast("Card nahi ban paya. Screenshot le le bhai 📸");
+        return;
+      }
+      if (mode === "download") {
+        downloadBlob(blob, "brainrot-card.png");
+        toast("Card download start ho gaya 📸");
+      } else {
+        await shareCardBlob(blob, "brainrot-card.png", shareMessage);
+      }
+    }
+
+    /* ---------- Achievements (IDs only, saved in this browser) ---------- */
+    const ACHS = {
+      jokes:    { title: "Bakchodi Collector", desc: "5 jokes generate kiye" },
+      scan:     { title: "Scanned & Cooked", desc: "Scanner complete kiya" },
+      roast:    { title: "Roast Master", desc: "3 roasts generate kiye" },
+      dodge:    { title: "Button Ka Dushman", desc: "Runaway button ko thakaya" },
+      useless:  { title: "Useless Legend", desc: "Useless buttons 10 baar dabaye" },
+      terminal: { title: "Fake Hacker (Simulation)", desc: "Terminal mein 3 commands chalaye" },
+      secret:   { title: "Secret Finder", desc: "3 secrets dhoondhe" },
+      chat:     { title: "Survived the Group Chat", desc: "Group chat survive ki" },
+      event:    { title: "Random Event Survivor", desc: "Ek random event dekha" },
+      award:    { title: "Award Collector", desc: "3 awards le liye" }
+    };
+
+    const STORAGE_KEY = "brainrot-achievements";
+    let unlocked = new Set();
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      if (Array.isArray(saved)) saved.forEach((id) => { if (ACHS[id]) unlocked.add(id); });
+    } catch (error) {
+      unlocked = new Set();
+    }
+
+    function unlock(id) {
+      if (!ACHS[id] || unlocked.has(id)) return;
+      unlocked.add(id);
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...unlocked]));
+      } catch (error) {
+        // Storage blocked: achievement still works for this session
+      }
+      sfx.unlock();
+      achToast(`Unlocked: ${ACHS[id].title}`);
+      renderAchievements();
+    }
+
+    function renderAchievements() {
+      const total = Object.keys(ACHS).length;
+      const count = unlocked.size;
+      $("achChip").textContent = `🏅 ${count}/${total}`;
+      $("achBar").style.width = (count / total) * 100 + "%";
+      $("achCount").textContent = `${count} / ${total} unlocked`;
+      $("secretCount").textContent = `Secrets found: ${secretsFound.size} / 5`;
+
+      const list = $("achList");
+      list.innerHTML = "";
+      Object.keys(ACHS).forEach((id) => {
+        const li = document.createElement("li");
+        const got = unlocked.has(id);
+        li.className = got ? "got" : "locked";
+        li.textContent = `${got ? "✅" : "🔒"} ${ACHS[id].title} — ${got ? ACHS[id].desc : "???"}`;
+        list.appendChild(li);
+      });
+
+      const ready = count >= ENDING_NEED;
+      $("endingGo").disabled = !ready;
+      $("endingHint").textContent = ready
+        ? "Unlocked! Dabao, par dhyan se 👀"
+        : `Locked 🔒 Aur ${ENDING_NEED - count} achievement chahiye.`;
+    }
+
+    $("achChip").addEventListener("click", () => {
+      document.getElementById("sec-ach").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    });
+
+    /* ---------- 1. RANDOM BAKCHODI GENERATOR ---------- */
+    const JOKE_HAND_MADE = [
+      "Mera alarm bhi mujhse thak gaya hai. Roz 6 baje bolta hai, main roz 'bas 5 minute' bolta hoon.",
+      "Mummy: 'Padhne baitho.' Main: 'Bas ek reel, phir pakka.' Ab reel khatam, mummy bhi thak gayi.",
+      "Ek baar mujhe lagaa tha main bahut productive hoon. Phir maine phone check kiya.",
+      "Teacher ne bola 'kal test hai'. Maine bola 'kal se padhunga'. Kal aaya, test chala gaya.",
+      "Chai ka cup dekh ke lagta hai mere paas bhi ek plan hai. Phir chai khatam ho jaati hai.",
+      "Dimag bolta hai 'aaj kuch naya karte hain.' Hath bolta hai 'Netflix kholo.'",
+      "Group chat mein 'hmm' bolna bhi ek skill hai, aur main isme expert hoon.",
+      "Mere paas 40 tabs khule hain. 0 complete hain. Ye 'multitasking' nahi, ye 'hoarding' hai.",
+      "Subah ka alarm: 'Uth ja.' Raat ka mann: 'Ek aur video.' Jeet hamesha mann ki hoti hai.",
+      "Bhai ka sapna: 'Bade log bano.' Bhai ka schedule: '2 baje tak reels.'"
+    ];
+
+    const JOKE_SUBJECTS = [
+      "Mera phone", "Mummy", "Padhai", "Mera dimaag", "Group chat", "Wi-Fi",
+      "Alarm", "Chai", "Mera dost", "Exam", "Mera GPU", "Bhai ka sapna",
+      "Reel", "Notification", "Mera bank balance", "Sunday"
+    ];
+    const JOKE_ACTIONS = [
+      "bolta hai 'bas 5 minute'",
+      "ko dekh ke ghabra gaya",
+      "ne mujhe leave maar diya",
+      "ab 1% battery pe chal raha hai",
+      "ne aaj bhi mujhe ignore kiya",
+      "ka mood off hai, reason unknown",
+      "ne 3 baar snooze kiya",
+      "ne scroll karte hue zindagi bita di",
+      "ne 'kal pakka' bola aur kal kabhi nahi aaya",
+      "ki tarah mujhe bhi 'theek hoon' bolna aata hai"
+    ];
+    const JOKE_ENDS = [" 💀", " 😭", " 🙃", " — aur main bas dekh raha hoon.", " 🫠", " — mera khoon jal gaya.", " 😌", " 🤡"];
+
+    let lastJoke = "";
+    function generateJoke() {
+      let joke;
+      do {
+        // 30% chance of a hand-written joke, otherwise a random combination (16 x 10 x 8 = 1280 options)
+        joke = Math.random() < 0.3
+          ? pick(JOKE_HAND_MADE)
+          : `${pick(JOKE_SUBJECTS)} ${pick(JOKE_ACTIONS)}${pick(JOKE_ENDS)}`;
+      } while (joke === lastJoke);
+      lastJoke = joke;
+      return joke;
+    }
+
+    let currentJoke = "";
+    function showJoke() {
+      currentJoke = generateJoke();
+      $("jokeOut").textContent = currentJoke;
+      stats.jokes++;
+      if (stats.jokes >= 5) unlock("jokes");
+    }
+
+    $("jokeNew").addEventListener("click", () => { sfx.blip(); showJoke(); });
+    $("jokeCopy").addEventListener("click", () => { sfx.click(); copyAndReport(`${currentJoke}\n${SIGN}`); });
+    $("jokeShare").addEventListener("click", () => { sfx.click(); shareText(`${currentJoke}\n${SIGN}`); });
+
+    /* ---------- 2. BRAINROT SCANNER 3000 ---------- */
+    const SCAN_STAGES = [
+      "Wi-Fi signal check ho raha hai...",
+      "Reels ki ginti ho rahi hai... (khatam nahi hui)",
+      "Dimaag ke open tabs gin raha hoon...",
+      "Overthinking ka level detect ho raha hai...",
+      "Mummy ka call detect hua... ignore kar raha hoon",
+      "Final calculation chal rahi hai..."
+    ];
+
+    const SCAN_RESULTS = [
+      { title: "97% cooked", note: "Tera brain ab battery saver mode mein chal raha hai." },
+      { title: "2 brain cells detected", note: "Ek phone ke liye, ek bahana dhoondhne ke liye." },
+      { title: "CEO of overthinking", note: "5 minute ke message ka 3 ghante mein analysis karta hai." },
+      { title: "Certified tab hoarder", note: "40 tabs open hain, 0 kaam complete hua hai." },
+      { title: "Reel Shaheed (Level 99)", note: "Reel khola tha, reel ne tujhe kha liya." },
+      { title: "Sleep Ustaad", note: "Sone ka plan banata hai, aur plan hi so jaata hai." },
+      { title: "Brain: Loading... (stuck at 99%)", note: "Bas last 1% pe 3 din se atka hai." }
+    ];
+
+    let scanRunning = false;
+    $("scanGo").addEventListener("click", async () => {
+      if (scanRunning) return;
+      scanRunning = true;
+      sfx.click();
+      const button = $("scanGo");
+      const stage = $("scanStage");
+      const fill = $("scanFill");
+      const out = $("scanOut");
+      button.disabled = true;
+      out.classList.add("hidden");
+      out.textContent = "";
+      fill.style.width = "0%";
+
+      for (let i = 0; i < SCAN_STAGES.length; i++) {
+        stage.textContent = SCAN_STAGES[i];
+        stage.classList.remove("glitch-flash");
+        void stage.offsetWidth; // restart the CSS animation
+        stage.classList.add("glitch-flash");
+        fill.style.width = `${((i + 1) / SCAN_STAGES.length) * 100}%`;
+        sfx.scan();
+        await sleep(reduceMotion ? 120 : 650);
+      }
+
+      for (const n of ["3", "2", "1"]) {
+        stage.textContent = n;
+        sfx.blip();
+        await sleep(reduceMotion ? 80 : 450);
+      }
+
+      const result = pick(SCAN_RESULTS);
+      stage.textContent = result.title;
+      sfx.reveal();
+      burst(["🧠", "💀", "😂"], 20);
+
+      out.textContent = `${result.note}\n⚠️ Fictional scanner. Medical result nahi hai.`;
+      out.classList.remove("hidden");
+
+      stats.scans++;
+      unlock("scan");
+      button.disabled = false;
+      button.textContent = "Dobara scan 🔁";
+      scanRunning = false;
+    });
+
+    /* ---------- 3. FRIEND ROAST GENERATOR ---------- */
+    const ROAST_CATS = {
+      best: {
+        label: "Best friend",
+        lines: [
+          "{n}, tu best friend hai, par group chat mein 'hmm' bhejne mein number 1 tu hi hai.",
+          "{n} ka plan hamesha 'chal dekhte hain' hota hai, aur dekhte kabhi nahi.",
+          "{n} ke saath jaane ka plan '10 minute' se shuru hota hai aur 3 ghante pe khatam."
+        ]
+      },
+      admin: {
+        label: "Group chat admin",
+        lines: [
+          "{n} group admin hai, par group ka kaam bas 'Good morning' forward karna hai.",
+          "{n} ne group ka naam 6 baar badla, aur 6 baar hi kaam shuru kiya.",
+          "{n} 'rules' bolke group chalata hai, par rules kaun padhta hai, {n} bhi nahi."
+        ]
+      },
+      procrastinator: {
+        label: "Procrastinator",
+        lines: [
+          "{n} ka motto: 'kal se pakka', aur kal abhi tak aaya hi nahi.",
+          "{n} ne exam ki tayyari 'kal' se shuru ki, ab tak kal chal raha hai.",
+          "{n} ko deadline se 2 minute pehle yaad aata hai ki deadline thi."
+        ]
+      },
+      overthinker: {
+        label: "Overthinker",
+        lines: [
+          "{n} ek message ka 3 ghante mein analysis karta hai, aur result hamesha 'shayad galat'.",
+          "{n} soch raha hai 'kya main galat tha?' Bhai, reply hi kar de.",
+          "{n} ka dimaag 2 AM pe ek alag hi movie chalata hai, bina ticket ke."
+        ]
+      },
+      delulu: {
+        label: "Delulu person",
+        lines: [
+          "{n} ko lagta hai reel ka 'tum kaun ho' comment usi ke liye tha.",
+          "{n} ke universe mein wo already famous hai, bas Wi-Fi nahi mil raha.",
+          "{n} ne ek baar smile dekhi aur plan bana liya ki 'ab kya karna hai'."
+        ]
+      },
+      gamer: {
+        label: "Gamer",
+        lines: [
+          "{n} game mein 'ek aur match' bolta hai, aur 4 ghante baad bhi wahi bolta hai.",
+          "{n} ka rank toh bada hai, bas 'bhai ek second' mein.",
+          "{n} lag ko blame karta hai, lekin lag nahi, 'ek aur' ka plan galat hai."
+        ]
+      },
+      student: {
+        label: "Student",
+        lines: [
+          "{n} notes banata hai, aur notes banane mein hi exam nikal jaata hai.",
+          "{n} ka syllabus 'bas aaj' se start hota hai, aur aaj 3 baje khatam.",
+          "{n} ko chai, reels aur padhai teeno ek hi time pe chahiye."
+        ]
+      },
+      self: {
+        label: "Self-roast",
+        lines: [
+          "Main khud ko roast karun toh: chai bina subah nahi, aur reels bina raat nahi.",
+          "Mera brain 40 tabs open karke bolta hai 'kaam ho gaya'.",
+          "Main khud se bolta hoon 'aaj se pakka', aur aaj bhi aaj se pehle wala hai."
+        ]
+      }
+    };
+
+    let currentRoast = "";
+    let currentRoastName = "Bhai";
+    let currentRoastLabel = "";
+
+    function getName() {
+      const name = $("nickname").value.trim();
+      return name || "Bhai";
+    }
+
+    $("roastGo").addEventListener("click", () => {
+      sfx.blip();
+      const cat = ROAST_CATS[$("roastCat").value];
+      currentRoastName = getName();
+      currentRoastLabel = cat.label;
+      currentRoast = pick(cat.lines).split("{n}").join(currentRoastName);
+      $("roastOut").textContent = `🔥 ${currentRoast}`;
+      stats.roasts++;
+      if (stats.roasts >= 3) unlock("roast");
+    });
+
+    $("roastCopy").addEventListener("click", () => {
+      if (!currentRoast) return toast("Pehle roast generate karo bhai 🔥");
+      sfx.click();
+      copyAndReport(`${currentRoast}\n${SIGN}`);
+    });
+
+    $("roastShare").addEventListener("click", () => {
+      if (!currentRoast) return toast("Pehle roast generate karo bhai 🔥");
+      sfx.click();
+      shareText(`${currentRoast}\n${SIGN}`);
+    });
+
+    $("roastDl").addEventListener("click", () => {
+      if (!currentRoast) return toast("Pehle roast generate karo bhai 🔥");
+      sfx.click();
+      cardAction({
+        kicker: `Roast card · ${currentRoastLabel}`,
+        headline: `${currentRoastName} ka roast`,
+        body: currentRoast
+      }, "download");
+    });
+
+    /* ---------- 4. RUNAWAY BUTTON ---------- */
+    const DODGE_LABELS = [
+      "Catch me if you can 🏃",
+      "Skill issue 😏",
+      "Bhai rehne de 🙃",
+      "Touch grass first 🌱",
+      "Nahi milega 🤭",
+      "Ab toh bas karo 😭"
+    ];
+    const DODGE_LIMIT = 6;
+    const dodgeZone = $("dodgeZone");
+    const dodgeBtn = $("dodgeBtn");
+    let dodgeCount = 0;
+    let dodgeSurrendered = false;
+
+    function centerDodgeButton() {
+      const x = (dodgeZone.clientWidth - dodgeBtn.offsetWidth) / 2;
+      const y = (dodgeZone.clientHeight - dodgeBtn.offsetHeight) / 2;
+      dodgeBtn.style.left = Math.max(8, x) + "px";
+      dodgeBtn.style.top = Math.max(8, y) + "px";
+    }
+
+    function moveDodgeButton() {
+      const maxX = dodgeZone.clientWidth - dodgeBtn.offsetWidth - 8;
+      const maxY = dodgeZone.clientHeight - dodgeBtn.offsetHeight - 8;
+      dodgeBtn.style.left = 8 + Math.random() * Math.max(0, maxX - 8) + "px";
+      dodgeBtn.style.top = 8 + Math.random() * Math.max(0, maxY - 8) + "px";
+    }
+
+    function dodge() {
+      if (dodgeSurrendered) return;
+      dodgeCount++;
+      sfx.boing();
+      if (dodgeCount >= DODGE_LIMIT) {
+        surrenderDodge();
+        return;
+      }
+      dodgeBtn.textContent = DODGE_LABELS[(dodgeCount - 1) % DODGE_LABELS.length];
+      moveDodgeButton();
+      $("dodgeMsg").textContent = `Attempt ${dodgeCount}/${DODGE_LIMIT}. Pakad ke dikha 😏`;
+    }
+
+    function surrenderDodge() {
+      dodgeSurrendered = true;
+      dodgeBtn.classList.add("surrender");
+      dodgeBtn.textContent = "Okay okay, tu jeet gaya 🏆";
+      $("dodgeMsg").textContent =
+        "🏆 VICTORY! Tu ne button ko thaka diya. Official title: Button Hunter (fake). Ab tu free hai, jaa grass touch kar.";
+      sfx.reveal();
+      burst(["🏆", "🎉", "🌱"], 25);
+      unlock("dodge");
+    }
+
+    dodgeZone.addEventListener("mousemove", (event) => {
+      if (dodgeSurrendered || window.matchMedia("(pointer: coarse)").matches) return;
+      const rect = dodgeBtn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const distance = Math.hypot(event.clientX - cx, event.clientY - cy);
+      if (distance < 90) dodge();
+    });
+
+    dodgeBtn.addEventListener("click", () => {
+      if (dodgeSurrendered) {
+        $("dodgeMsg").textContent = "Tu jeet gaya bhai, ab kya chahiye? 🏆";
+        return;
+      }
+      dodge(); // On phones, tapping makes it run away
+    });
+
+    $("dodgeReset").addEventListener("click", () => {
+      sfx.click();
+      dodgeCount = 0;
+      dodgeSurrendered = false;
+      dodgeBtn.classList.remove("surrender");
+      dodgeBtn.textContent = "Catch me if you can 🏃";
+      $("dodgeMsg").textContent = "Naya round. Pakdo 😏";
+      centerDodgeButton();
+    });
+
+    /* ---------- 5. USELESS BUTTON FACTORY ---------- */
+    let uselessTotal = 0;
+
+    function setUselessOut(text) {
+      $("uselessOut").textContent = text;
+    }
+
+    function countUseless() {
+      uselessTotal++;
+      stats.useless++;
+      $("uselessCount").textContent = `Useless clicks: ${uselessTotal}`;
+      if (uselessTotal >= 10) unlock("useless");
+    }
+
+    const uselessActions = {
+      judge() {
+        sfx.blip();
+        setUselessOut(pick([
+          "Tera click dekh ke main bhi confused hoon. 🧐",
+          "Ek button dabaya, itni energy kahan se laaya? Respect. 🫡",
+          "Judgment: 6/10. Bahut scope hai, bas ek click aur kar le. 🤨"
+        ]));
+      },
+      money() {
+        sfx.click();
+        uselessActions.imaginaryBalance = (uselessActions.imaginaryBalance || 0) + (100 + Math.floor(Math.random() * 4900));
+        setUselessOut(`Imaginary balance: ₹${uselessActions.imaginaryBalance.toLocaleString("en-IN")}\n(Ye paisa real nahi hai, bank ko mat batana 🏦)`);
+      },
+      async update(button) {
+        if (button.disabled) return;
+        button.disabled = true;
+        sfx.scan();
+        const steps = [
+          "Updating Brain... 0%",
+          "Updating Brain... 23% (do not turn off your brain)",
+          "Updating Brain... 58% (chai le aao)",
+          "Updating Brain... 91% (ab bas)",
+          "Update failed: brain not found. 🪟"
+        ];
+        for (const step of steps) {
+          setUselessOut(step);
+          await sleep(reduceMotion ? 80 : 700);
+        }
+        setUselessOut("Restart karna padega... (lekin tu nahi karega) 😌");
+        button.disabled = false;
+      },
+      sorry() {
+        sfx.boing();
+        setUselessOut("Bhai, sorry tera time waste kiya. Dil se. 🙇\nAb bhi scroll karega? 💀");
+      },
+      award() {
+        sfx.unlock();
+        setUselessOut("🏅 Achievement unlocked: 'Pressed a Useless Button'\nRarity: Common · Usefulness: 0");
+        burst(["🏅", "🤡"], 12);
+      }
+    };
+
+    document.querySelectorAll("[data-useless]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const kind = button.dataset.useless;
+        if (kind === "update") {
+          uselessActions.update(button);
+          countUseless();
+          return;
+        }
+        uselessActions[kind]();
+        countUseless();
+      });
+    });
+
+    /* ---------- 6. FAKE HACKER TERMINAL (SIMULATION ONLY) ---------- */
+    const termOut = $("termOut");
+    const termForm = $("termForm");
+    const termIn = $("termIn");
+    let termBusy = false;
+
+    function termPrint(text, className = "") {
+      const line = document.createElement("div");
+      if (className) line.className = className;
+      line.textContent = text;
+      termOut.appendChild(line);
+      termOut.scrollTop = termOut.scrollHeight;
+    }
+
+    const GENERIC_ROASTS = [
+      "Tera brain: 'Loading...' ka screen. Sach mein.",
+      "Tu 'kal se' ka topper hai.",
+      "Tu itna scroll karta hai ki thumb ko bhi union chahiye.",
+      "Tera focus span ek reel jitna hai.",
+      "Tu mummy ke call pe 'busy' hai, aur reel pe 'free'."
+    ];
+    const SHORT_MOODS = [
+      "chai-dependent",
+      "2 AM energy, 9 AM body",
+      "Wi-Fi ke saath connected, life ke saath disconnected",
+      "dramatic, but sach mein thaka hua"
+    ];
+
+    const TERM_COMMANDS = {
+      help() {
+        return [
+          "Commands: help, hack, love, money, roast, mood, ls, clear, exit",
+          "(Sab fake hai. Ye simulation hai, real hacking nahi.)"
+        ];
+      },
+      async hack() {
+        const steps = [
+          "Initializing fake hacker mode... 🧑‍💻",
+          "Downloading 47 TB of momos... (47%)",
+          "Searching for your missing brain cells... found 2",
+          "Bypassing Wi-Fi password: 'password123' lol",
+          "Access granted to: your snacks drawer 🍫",
+          "SIMULATION COMPLETE. Koi asli account touch nahi hua."
+        ];
+        for (const step of steps) {
+          termPrint(step);
+          await sleep(reduceMotion ? 20 : 420);
+        }
+        return [];
+      },
+      love() {
+        return ["Searching for love... 0 results found.", "Retry after 2 Wi-Fi bars. ❤️‍🩹"];
+      },
+      money() {
+        return ["Imaginary bank balance: ₹0.00", "Bank bhi confuse hai ki tu kya dhoondh raha hai."];
+      },
+      roast() {
+        return [pick(GENERIC_ROASTS)];
+      },
+      mood() {
+        return ["Mood status: " + pick(SHORT_MOODS)];
+      },
+      ls() {
+        return ["your_brain.txt        (not found)", "sleep_schedule.md     (last edited: never)", "homework.pdf           (tomorrow.pdf)"];
+      },
+      exit() {
+        return ["Exit ka button nahi hai bhai. Tab band karo, ya touch grass 🌱"];
+      }
+    };
+
+    function bootTerminal() {
+      termPrint("BRAINROT OS v6.9 [SIMULATION MODE]");
+      termPrint("Ye fake terminal hai. Koi real system access nahi.");
+      termPrint("Type 'help' to start.");
+    }
+
+    termForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (termBusy) return;
+      const raw = termIn.value.trim();
+      termIn.value = "";
+      if (!raw) return;
+
+      const cmd = raw.toLowerCase();
+      termPrint("C:\\brainrot> " + raw, "prompt");
+
+      if (cmd === "clear") {
+        termOut.innerHTML = "";
+        bootTerminal();
         return;
       }
 
-      const file = new File([blob], "brainrot-roast-card.png", { type: "image/png" });
-
-      // Use native share if the phone supports sharing files
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        try {
-          await navigator.share({
-            title: "BRAINROT.exe",
-            text: `Mera brainrot level ${finalScore}%! 😂`,
-            files: [file]
-          });
-          return;
-        } catch {
-          // User cancelled or share failed, so fall through to download
-        }
+      // Hidden secret command
+      if (cmd === "sudo touch grass") {
+        termPrint("[sudo] password for you: ******");
+        termPrint("Access granted. Grass touched. 🌱");
+        findSecret("grass");
+        return;
       }
 
-      // Fallback: download the PNG
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "brainrot-roast-card.png";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      showToast("Card download ho gaya! 📸");
+      if (!Object.prototype.hasOwnProperty.call(TERM_COMMANDS, cmd)) {
+        termPrint(`'${raw}' command nahi mila. 'help' try karo. (Ye bhi simulation hai)`, "err");
+        return;
+      }
+
+      termBusy = true;
+      termIn.disabled = true;
+      try {
+        const lines = await TERM_COMMANDS[cmd]();
+        lines.forEach((line) => termPrint(line));
+      } finally {
+        termBusy = false;
+        termIn.disabled = false;
+        termIn.focus();
+      }
+
+      stats.terminal++;
+      if (stats.terminal >= 3) unlock("terminal");
     });
 
-    /* ==========================================================
-       MEME MACHINE
-       ========================================================== */
-    const memes = [
-      "Bhai phone 1% pe, sapna 100% pe.",
-      "Ghar wale: 'Padhai kar.'\nMain: 'Ye reel bas 2 second ki hai...'",
-      "Alarm: 6 baje.\nMain: 'Kal se pakka.' 🛌",
-      "Dost: 'Kab milega?'\nMain: 'Bas kal pakka.' (kal kabhi nahi aata)",
-      "Chai ne bola: 'Main hi sab theek karunga.' 🍵",
-      "Mujhe apna brain bhi ab Wi-Fi jaisa lagta hai: 'Connected but slow.'",
-      "Skibidi bolo toh log dekhte hain, phir bhi main bolta rehta hoon. 😭",
-      "Exam ke pehle 2 din: 'Kuch bhi nahi aata.'\nExam ke baad: 'Mujhe sab aata tha.'",
-      "Mummy: 'Khana kha le.'\nMain: 'Ek minute, ye reel khatam ho jaye.' (1 ghanta gaya)",
-      "Padhai ke time: 'Mood nahi hai.'\nReels ke time: 'Mood ekdum set hai.' 💀",
-      "Group chat: 'Bhai kya haal?'\nMain: 'Theek hoon.' (bhai main theek nahi hoon)",
-      "Mere brain ka browser: 40 tabs open, 0 kaam complete. 🧠"
+    /* ---------- 7. DELULU METER ---------- */
+    const DELULU = [
+      { name: "Professionally delusional 🎓", line: "Bina kisi kaam ke 'next level' bolta hai aur sach mein maanta hai." },
+      { name: "CEO of imaginary scenarios 💼", line: "Meeting mein 'maine socha tha' bolne wala CEO." },
+      { name: "Living in a parallel universe 🪐", line: "Tere universe mein tu topper hai, bas ye universe offline hai." },
+      { name: "Reality optional 🫠", line: "Reality ka toggle tere phone mein 'off' hai." },
+      { name: "Certified main character 🎬", line: "Har scene mein tu hi hai, background music bhi tere liye hai." }
     ];
 
-    let lastMemeIndex = -1;
+    let deluluText = "";
+    $("deluluGo").addEventListener("click", async () => {
+      const button = $("deluluGo");
+      if (button.disabled) return;
+      button.disabled = true;
+      sfx.click();
+      const bar = $("deluluBar");
+      const pct = $("deluluPct");
+      const out = $("deluluOut");
+      $("deluluShare").classList.add("hidden");
+      out.textContent = "Scanning delusion...";
 
-    function showMeme() {
-      let index;
-      do {
-        index = Math.floor(Math.random() * memes.length);
-      } while (index === lastMemeIndex && memes.length > 1);
+      for (let i = 0; i < 20; i++) {
+        const value = Math.floor(Math.random() * 101);
+        bar.style.width = value + "%";
+        pct.textContent = value + "%";
+        sfx.blip();
+        await sleep(reduceMotion ? 10 : 90);
+      }
 
-      lastMemeIndex = index;
+      const finalValue = 60 + Math.floor(Math.random() * 41);
+      const result = pick(DELULU);
+      bar.style.width = finalValue + "%";
+      pct.textContent = finalValue + "%";
+      out.textContent = `${result.name}\n${result.line}`;
+      deluluText = `Mera Delulu Meter: ${finalValue}% — ${result.name}\n"${result.line}"`;
+      sfx.reveal();
+      burst(["🌀", "🎬", "👑"], 25);
+      $("deluluShare").classList.remove("hidden");
+      button.disabled = false;
+      button.textContent = "Dobara check 🌀";
+    });
 
-      const card = $("memeCard");
-      card.textContent = memes[index];
-      card.classList.remove("flip");
-      void card.offsetWidth;
-      card.classList.add("flip");
+    $("deluluShare").addEventListener("click", () => {
+      sfx.click();
+      shareText(`${deluluText}\n${SIGN}`);
+    });
+
+    /* ---------- 8. RANDOM LIFE ADVICE ---------- */
+    const ADVICE = [
+      "Believe in yourself. Even your Wi-Fi disconnects sometimes.",
+      "If plan A fails, remember the alphabet has 25 more letters. Plan B ka naam bhoolna mat.",
+      "Never give up on your dreams. Unless the dream is your 4 AM alarm.",
+      "Success is 1% talent and 99% chai.",
+      "Procrastination is the art of keeping up with yesterday. Aaj ka kaam kal ke liye reserved hai.",
+      "Sleep early, wake up early. Ye bolne wale log bhi 2 baje reel dekh rahe hain.",
+      "Your future self will thank you. Bas wo abhi so raha hai.",
+      "Be the change you want to see. Pehle remote wapas rakh do.",
+      "Fake it until you make it. Phir se fake it. Kab tak? Pata nahi.",
+      "Don't compare yourself with others. Unka filter bhi tujhse better hai.",
+      "Stay hungry, stay foolish. Hungry toh main hamesha hoon, foolish bhi.",
+      "Reading is important. Caption padhna bhi reading hai.",
+      "Water is life. Chai bhi life hai, par water pehle.",
+      "Dream big. Bed bhi big le lo, sone ke liye.",
+      "Hard work pays off. Payment kab aayegi, ye koi nahi bataata."
+    ];
+
+    let adviceIndex = -1;
+    let currentAdvice = "";
+    function showAdvice() {
+      let next;
+      do { next = Math.floor(Math.random() * ADVICE.length); } while (next === adviceIndex && ADVICE.length > 1);
+      adviceIndex = next;
+      currentAdvice = ADVICE[next];
+      $("adviceOut").textContent = `📜 OFFICIAL ADVICE #${next + 1}\n"${currentAdvice}"`;
     }
 
-    $("nextMeme").addEventListener("click", () => {
-      sfx.blip();
-      showMeme();
+    $("adviceNew").addEventListener("click", () => { sfx.blip(); showAdvice(); });
+    $("adviceCopy").addEventListener("click", () => {
+      sfx.click();
+      copyAndReport(`${currentAdvice}\n${SIGN}`);
     });
 
-    /* ==========================================================
-       SURPRISE ENDING
-       ========================================================== */
-    const surpriseSteps = [
-      "Shutting down BRAINROT.exe...",
-      "Saving brain data... 🧠",
-      "Brain data: 'Thak gaya hoon.'",
-      "Last message: Thoda so ja bhai. Reel kal dekhna. 😌"
+    /* ---------- 9. MOOD DETECTOR ---------- */
+    const MOODS = {
+      "😴": { name: "Sleepy Scientist", why: "Tera brain 2 AM pe active hota hai, par 2 PM pe 'bas 5 minute' ho jaata hai.", activity: "Ceiling ko 10 minute tak ghoorna (research ke liye)." },
+      "😭": { name: "Dramatic Emotional Hero", why: "Ek song ne 3 baar rulaya, aur chauthi baar tu khud hi ro diya.", activity: "Ek glass paani peeke 'main theek hoon' bolna, practice karke." },
+      "😤": { name: "Angry Bhai Mode", why: "Charger ne haath chhod diya, aur tu usse personally le raha hai.", activity: "Apne aap se 10 baar 'chill' bolna." },
+      "🤡": { name: "Full Clown Energy", why: "Serious meeting mein ek meme bheja, ab khud bhi nahi jaanta kaun si chat hai.", activity: "Apni hi photo ko 'legend' bolna." },
+      "🥱": { name: "Bored Philosopher", why: "Sab kuch dekh liya, bas life ki playlist skip ho rahi hai.", activity: "Phone ko 5 minute tak ghoorna, phir usi ko scroll karna." },
+      "😎": { name: "Overconfident Legend", why: "Mirror ne bhi bola 'bhai tu hi hai'.", activity: "Bina plan ke kisi ko 'main free hoon' bolna." }
+    };
+
+    let currentMood = "";
+    document.querySelectorAll("[data-mood]").forEach((button) => {
+      button.addEventListener("click", () => {
+        sfx.blip();
+        const key = button.dataset.mood;
+        const mood = MOODS[key];
+        currentMood = `Mood: ${key} ${mood.name}\n${mood.why}\nRecommended useless activity: ${mood.activity}`;
+        $("moodOut").textContent = currentMood;
+      });
+    });
+
+    $("moodCopy").addEventListener("click", () => {
+      if (!currentMood) return toast("Pehle koi emoji chuno 😎");
+      sfx.click();
+      copyAndReport(`${currentMood}\n${SIGN}`);
+    });
+
+    /* ---------- 10. DUDU-BUBU STICKER ZONE ---------- */
+    const DUDU_LINES = [
+      "Dudu bola: bhai itna mat dabao 😭",
+      "Dudu: main theek hoon, tu bata.",
+      "Dudu ka mood: 60% chai, 40% nap.",
+      "Dudu: thak gaye hoge na? Thoda so ja."
+    ];
+    const BUBU_LINES = [
+      "Bubu bola: scroll band kar, reels ka sach ye hai ki loop hai.",
+      "Bubu: thak gaye hoge na? Thoda ruk ja.",
+      "Bubu ka mood: 'hehe' bolo toh bolega.",
+      "Bubu: haan bol bhai, kya chal raha hai?"
+    ];
+    const HEART_EMOJIS = ["💖", "💜", "🩷", "✨"];
+
+    function spawnHearts(count = 6) {
+      if (reduceMotion) return;
+      const zone = $("heartZone");
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = pick(HEART_EMOJIS);
+        heart.style.left = 10 + Math.random() * 80 + "%";
+        heart.style.animationDelay = Math.random() * 0.3 + "s";
+        zone.appendChild(heart);
+        setTimeout(() => heart.remove(), 2200);
+      }
+    }
+
+    function stickerReact(button, lines) {
+      sfx.boing();
+      button.classList.remove("bounce");
+      void button.offsetWidth;
+      button.classList.add("bounce");
+      spawnHearts();
+      $("stickerOut").textContent = pick(lines);
+    }
+
+    $("stickDudu").addEventListener("click", (event) => stickerReact(event.currentTarget, DUDU_LINES));
+    $("stickBubu").addEventListener("click", (event) => stickerReact(event.currentTarget, BUBU_LINES));
+
+    /* ---------- 11. GROUP CHAT SURVIVAL SIMULATOR ---------- */
+    const CHAT_CAST = [
+      { name: "Hmm wala dost", lines: ["hmm", "hmm.", "hmm 🙂", "hmm ok"] },
+      { name: "3-din-baad wala", lines: ["haan bol, kya tha?", "(3 din baad) sorry bhai, phone chhupa tha", "bhai ab bata"] },
+      { name: "47-reels wala", lines: ["dekh ye", "ye bhi dekh 💀", "ye toh must dekh", "(47 reels later)"] },
+      { name: "Admin jo kuch nahi karta", lines: ["group ka naam badal diya (koi kaam ka nahi)", "rules: sab sahi rahein 👍", "@everyone ek baat", "(admin ne kuch nahi kiya)"] },
+      { name: "Bill ke time wala", lines: ["bhai bill split kar lena", "bhai mera phone 2% pe hai", "(bill aaya)", "bhai bathroom gaya tha"] }
     ];
 
-    $("dontPress").addEventListener("click", async () => {
-      sfx.secret();
-      $("surprise").classList.remove("hidden");
-      $("surpriseTitle").textContent = surpriseSteps[0];
-      $("surpriseText").textContent = "";
-
-      for (let i = 1; i < surpriseSteps.length; i++) {
-        await sleep(1200);
-        $("surpriseTitle").textContent = surpriseSteps[i];
-        sfx.blip();
+    let currentChat = "";
+    function generateChat() {
+      const lines = [];
+      for (let i = 0; i < 9; i++) {
+        const person = pick(CHAT_CAST);
+        lines.push(`${person.name}: ${pick(person.lines)}`);
       }
+      return lines.join("\n");
+    }
 
-      await sleep(800);
-      $("surpriseText").textContent = "Ye scan bas fun ke liye tha. Thoda paani piyo, aur kal phir aana. 💚";
-      confetti(["💚", "😌", "🌙", "✨"], 25);
-    });
+    function showChat(unlockAchievement) {
+      currentChat = generateChat();
+      $("chatOut").textContent = currentChat;
+      if (unlockAchievement) unlock("chat");
+    }
 
-    $("surpriseRestart").addEventListener("click", () => {
+    $("chatNew").addEventListener("click", () => { sfx.blip(); showChat(true); });
+    $("chatCopy").addEventListener("click", () => { sfx.click(); copyAndReport(`${currentChat}\n\n${SIGN}`); });
+    $("chatShare").addEventListener("click", () => { sfx.click(); shareText(`${currentChat}\n\n${SIGN}`); });
+
+    /* ---------- 12. EXCUSE GENERATOR (JOKES ONLY) ---------- */
+    const EXCUSES = {
+      late: {
+        believable: ["Bus late thi, aur bus bhi shayad late hi thi.", "Traffic tha, aur ek signal ne mujhe ignore kiya.", "Auto wale se bahas ho gayi, woh jeet gaya."],
+        unhinged: ["Mere shoelace ne mujhe ek nayi life ka rasta dikhaya.", "Pigeon mera scooter le gaya, main uske peeche bhaga.", "Main time travel kar raha tha, galat year pe land ho gaya."]
+      },
+      study: {
+        believable: ["Notes bana rahا tha, bas lamba wala chapter tha.", "Phone charge kar raha tha, aur charging 1% pe atki hui thi.", "Kal se pakka padhna shuru kar raha tha, aaj ka kal aaj hi aa gaya."],
+        unhinged: ["Meri kitaab ne mujhse ladai ki, main shant karne gaya.", "Mere dimaag ne mujhe uninstall kar diya, reinstall ho raha hai.", "Main syllabus ke saath meditation kar raha tha, woh bhi nahi mana."]
+      },
+      messages: {
+        believable: ["Phone silent mode pe tha, aur silent mode ne sab sambhal liya.", "Message aaya tha, par reply karne se pehle mera mann so gaya.", "Notification dikha tha, par main 'baad mein' waale mood mein tha."],
+        unhinged: ["Mere phone ne message ko 'spam' category mein daal diya, sorry bolna chahiye ab.", "Tera message mere dimaag ke Wi-Fi se connect nahi hua.", "Main ek naye planet pe tha jahan message ka concept hi nahi hai."]
+      },
+      deadline: {
+        believable: ["Deadline ka date mere calendar mein 'thodi der' mein likha tha.", "Submit karne ja raha tha, server ne bhi ignore kar diya.", "Ek kaam ke beech mein dusra kaam aa gaya, aur dono bhaag gaye."],
+        unhinged: ["Deadline ne mujhe pehle dekha, phir mujhe bhaga diya.", "Mera kaam mere paas aaya, par main usse 'kal' bolkar bhaga raha tha.", "Maine deadline ko 'future' mein shift kar diya, Google Calendar ko nahi bataya."]
+      },
+      sleep: {
+        believable: ["Raat ko 3 baje tak jaga tha, toh subah ki battery nahi thi.", "Alarm bajta raha, main usse 'snooze' pe pyaar se sulata raha.", "Thoda leta tha, phir pata chala poora din nikal gaya."],
+        unhinged: ["Mere bed ne mujhe 'hold' pe rakha tha, main release karne ka request kar raha tha.", "Main hibernation mein tha, bear ka cousin hoon.", "Sapne mein job mil gayi thi, usko confirm kar raha tha."]
+      },
+      birthday: {
+        believable: ["Calendar reminder aaya tha, par maine 'later' daba diya.", "Date yaad thi, par ghar mein wifi ke saath bhool gaya.", "Dost ka birthday tha, aur main sochta raha 'kal bolunga'."],
+        unhinged: ["Birthday cake ne mujhe ignore kiya, main bhi ignore kar raha tha.", "Mere dimaag ka calendar 'Sunday' pe atka hua hai.", "Maine birthday ko surprise maana, aur usne mujhe surprise kiya."]
+      }
+    };
+
+    let excuseMode = "believable";
+    let currentExcuse = "";
+
+    function setExcuseMode(mode) {
+      excuseMode = mode;
+      $("excBelievable").setAttribute("aria-pressed", String(mode === "believable"));
+      $("excUnhinged").setAttribute("aria-pressed", String(mode === "unhinged"));
+      $("excBelievable").classList.toggle("secondary", mode !== "believable");
+      $("excUnhinged").classList.toggle("secondary", mode !== "unhinged");
+    }
+
+    function showExcuse() {
+      const category = EXCUSES[$("excCat").value];
+      currentExcuse = pick(category[excuseMode]);
+      const label = excuseMode === "unhinged" ? "Absolutely unhinged" : "More believable";
+      $("excOut").textContent = `🎭 [${label}] ${currentExcuse}\n(Ye joke hai, asli life mein mat bolna)`;
+    }
+
+    $("excBelievable").addEventListener("click", () => { setExcuseMode("believable"); sfx.blip(); });
+    $("excUnhinged").addEventListener("click", () => { setExcuseMode("unhinged"); sfx.blip(); });
+    $("excNew").addEventListener("click", () => { sfx.blip(); showExcuse(); });
+    $("excCopy").addEventListener("click", () => {
+      if (!currentExcuse) return toast("Pehle excuse generate karo 🎭");
       sfx.click();
-      $("surprise").classList.add("hidden");
-      showScreen("home");
+      copyAndReport(`${currentExcuse}\n${SIGN}`);
     });
 
-    $("surprise").addEventListener("click", event => {
-      if (event.target.id === "surprise") {
-        $("surprise").classList.add("hidden");
+    /* ---------- 13. FAKE AWARDS CEREMONY ---------- */
+    const AWARDS = [
+      { title: "National Overthinking Champion 🧠", reason: "Ek ghante mein 'kya hoga agar' soch ke 3 plan cancel kiye." },
+      { title: "Professional Procrastinator 🛌", reason: "Kal ka kaam aaj bhi kal ke liye rakha." },
+      { title: "CEO of Doing Nothing 💼", reason: "Ek din bhi productive nahi, par bahut busy dikhte ho." },
+      { title: "Certified Screenshot Collector 📸", reason: "Har meme ka screenshot, par ek bhi reply nahi." },
+      { title: "Lifetime Achievement in Being Online 🌐", reason: "Tum online ho, bas ye tumhe pata nahi." }
+    ];
+
+    let currentAward = null;
+    function showAward() {
+      currentAward = pick(AWARDS);
+      const card = $("awardCard");
+      card.innerHTML = "";
+      const kicker = document.createElement("p");
+      kicker.className = "award-reason";
+      kicker.textContent = "🎤 Award ceremony · Presented to: Tu (jo ye padh raha hai)";
+      const title = document.createElement("div");
+      title.className = "award-title";
+      title.textContent = currentAward.title;
+      const reason = document.createElement("p");
+      reason.className = "award-reason";
+      reason.textContent = currentAward.reason;
+      card.append(kicker, title, reason);
+      sfx.reveal();
+      burst(["🏆", "🎉", "✨"], 18);
+      stats.awards++;
+      if (stats.awards >= 3) unlock("award");
+    }
+
+    $("awardGo").addEventListener("click", () => { sfx.click(); showAward(); });
+    $("awardShare").addEventListener("click", () => {
+      if (!currentAward) return toast("Pehle award lo 🏆");
+      sfx.click();
+      shareText(`Mujhe mila: ${currentAward.title}\n"${currentAward.reason}"\n${SIGN}`);
+    });
+    $("awardDl").addEventListener("click", () => {
+      if (!currentAward) return toast("Pehle award lo 🏆");
+      sfx.click();
+      cardAction({
+        kicker: "Award certificate",
+        headline: currentAward.title,
+        body: currentAward.reason
+      }, "download");
+    });
+
+    /* ---------- 14. SECRET EASTER EGGS ---------- */
+    const SECRET_FX = {
+      logo() {
+        document.body.classList.add("rainbow");
+        setTimeout(() => document.body.classList.remove("rainbow"), 4000);
+        toast("🌈 Logo ne rainbow mode on kar diya");
+        burst(["🌈", "✨"], 20);
+      },
+      skibidi() {
+        burst(["🚽", "💀", "😂", "🔥"], 45);
+        toast("Skibidi detected 🚽");
+      },
+      eye() {
+        const wrap = $("wrap");
+        wrap.classList.add("shake");
+        setTimeout(() => wrap.classList.remove("shake"), 600);
+        toast("👁 Tum mujhe dekh rahe ho. Main bhi tumhe dekh raha hoon.");
+      },
+      grass() {
+        burst(["🌱", "🌿", "🍀"], 40);
+        toast("Grass touched successfully 🌱");
+      },
+      konami() {
+        document.body.classList.add("invert");
+        setTimeout(() => document.body.classList.remove("invert"), 2500);
+        toast("Cheat code accepted. Brain 200% slow 😭");
       }
-    });
+    };
 
-    /* ==========================================================
-       EASTER EGGS
-       1. Click the title 7 times -> Secret mode
-       2. Type "skibidi" anywhere -> Emoji rain
-       3. Konami code (arrow keys + B A) -> Shake screen
-       ========================================================== */
+    function findSecret(id) {
+      if (!SECRET_FX[id]) return;
+      if (secretsFound.has(id)) {
+        toast("Ye secret pehle mil chuka hai 😌");
+        return;
+      }
+      secretsFound.add(id);
+      SECRET_FX[id]();
+      if (secretsFound.size >= SECRET_NEEDED) unlock("secret");
+      renderAchievements();
+    }
+
+    // Secret 1: click the logo 7 times within a short window
     let logoClicks = 0;
     let logoTimer = null;
-
     $("logo").addEventListener("click", () => {
       logoClicks++;
       clearTimeout(logoTimer);
-      logoTimer = setTimeout(() => (logoClicks = 0), 2000);
-
-      if (logoClicks === 7) {
+      logoTimer = setTimeout(() => { logoClicks = 0; }, 2500);
+      if (logoClicks >= 7) {
         logoClicks = 0;
-        document.body.classList.toggle("secret");
-        sfx.secret();
-        showToast(document.body.classList.contains("secret")
-          ? "🥚 Secret mode ON"
-          : "Secret mode OFF");
-        confetti(["🥚", "✨", "🌈"], 20);
+        findSecret("logo");
       }
     });
 
-    const typedWord = "skibidi";
-    let typedBuffer = "";
+    // Secret 2: click the suspicious eye 3 times
+    let eyeClicks = 0;
+    let eyeTimer = null;
+    $("eye").addEventListener("click", () => {
+      eyeClicks++;
+      clearTimeout(eyeTimer);
+      eyeTimer = setTimeout(() => { eyeClicks = 0; }, 2500);
+      if (eyeClicks >= 3) {
+        eyeClicks = 0;
+        findSecret("eye");
+      }
+    });
 
-    const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
-      "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+    // Keyboard shortcuts: "skibidi" typing and Konami code
+    const SKIBIDI = "skibidi";
+    let typedBuffer = "";
+    const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
     let konamiIndex = 0;
 
-    document.addEventListener("keydown", event => {
-      // Skibidi typing
-      typedBuffer = (typedBuffer + event.key.toLowerCase()).slice(-typedWord.length);
-      if (typedBuffer === typedWord) {
+    document.addEventListener("keydown", (event) => {
+      const tag = event.target.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+      if (event.key === "Escape") closeOverlays();
+
+      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+
+      typedBuffer = (typedBuffer + key).slice(-SKIBIDI.length);
+      if (typedBuffer === SKIBIDI) {
         typedBuffer = "";
-        sfx.secret();
-        showToast("Skibidi detected 🚽");
-        confetti(["🚽", "💀", "😂", "🔥"], 45);
+        findSecret("skibidi");
       }
 
-      // Konami code
-      const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
-      if (key === konamiCode[konamiIndex]) {
+      if (key === KONAMI[konamiIndex]) {
         konamiIndex++;
-        if (konamiIndex === konamiCode.length) {
+        if (konamiIndex === KONAMI.length) {
           konamiIndex = 0;
-          sfx.boing();
-          shakeScreen();
-          showToast("Cheat code accepted. Brain ab 200% slow 😭");
+          findSecret("konami");
         }
       } else {
-        konamiIndex = key === konamiCode[0] ? 1 : 0;
+        konamiIndex = key === KONAMI[0] ? 1 : 0;
       }
     });
 
-    /* ==========================================================
-       INIT
-       ========================================================== */
-    renderStickers();
-    showScreen("home");
+    /* ---------- 15. RANDOM INTERNET EVENT ---------- */
+    async function crashEvent(box) {
+      box.innerHTML = `<h3 class="glitch" data-text="SYSTEM CRASHED">SYSTEM CRASHED</h3><p class="mono">0x0BRAIN_OVERLOAD · rebooting...</p>`;
+      sfx.buzz();
+      await sleep(reduceMotion ? 100 : 2200);
+      box.innerHTML = `<div class="big-emoji">😌</div><h3>Haha, joke tha.</h3><p>Site zinda hai. Tera brain bhi, probably.</p>`;
+    }
 
-    // Unlock audio on first click (mobile browsers need this)
-    document.addEventListener("click", () => getAudio(), { once: true });
+    async function notificationEvent(box) {
+      box.innerHTML = `<div class="sysnotif">🔔 SYSTEM ALERT<br>Achievement unlocked: "Touched Grass (fake)"</div><p class="mono">Rarity: Mythic · Usefulness: 0</p>`;
+      sfx.unlock();
+    }
+
+    async function prophecyEvent(box) {
+      const target = "Kal tu 6 baje uthega. Nahi uthega. Lekin soch to sakta hai.";
+      const chars = "#@%$&*!?01";
+      box.innerHTML = `<p class="mono big" id="prophecyText"></p>`;
+      const el = box.querySelector("#prophecyText");
+      if (!el) return;
+      for (let i = 0; i < 14; i++) {
+        el.textContent = Array.from({ length: target.length }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+        await sleep(reduceMotion ? 10 : 90);
+      }
+      el.textContent = `🔮 PROPHECY: ${target}`;
+    }
+
+    async function loaderEvent(box) {
+      box.innerHTML = `<p class="mono">Loading... <span id="loadNum">0</span>%</p><div class="bar"><div id="loadBar"></div></div>`;
+      for (let i = 0; i <= 100; i += 5) {
+        const num = box.querySelector("#loadNum");
+        const bar = box.querySelector("#loadBar");
+        if (!num || !bar) return; // Modal was closed mid-animation
+        num.textContent = i;
+        bar.style.width = i + "%";
+        await sleep(reduceMotion ? 5 : 45);
+      }
+      box.innerHTML = `<div class="big-emoji">🐸</div><p>Itna loading ke baad bas ek frog. Worth it? Haan. Shayad.</p>`;
+    }
+
+    async function missionEvent(box) {
+      box.innerHTML = `
+        <h3>🎯 New Mission</h3>
+        <p>Next 30 second tak paani piyo, ya chai, jo bhi ho.</p>
+        <p class="mono">Status: <span id="missionStatus">pending</span></p>
+        <button class="btn small" id="missionDone" type="button">Done kar diya</button>`;
+      const done = box.querySelector("#missionDone");
+      if (done) {
+        done.addEventListener("click", () => {
+          const status = box.querySelector("#missionStatus");
+          if (status) status.textContent = "COMPLETE ✅ (fake)";
+          sfx.reveal();
+        });
+      }
+    }
+
+    const EVENT_LIST = [crashEvent, notificationEvent, prophecyEvent, loaderEvent, missionEvent];
+
+    async function runRandomEvent() {
+      const box = $("eventBox");
+      box.innerHTML = "";
+      $("eventLayer").classList.remove("hidden");
+      $("eventClose").focus();
+      sfx.click();
+      unlock("event");
+      await pick(EVENT_LIST)(box);
+    }
+
+    $("eventGo").addEventListener("click", runRandomEvent);
+
+    $("eventClose").addEventListener("click", () => {
+      $("eventLayer").classList.add("hidden");
+      $("eventBox").innerHTML = "";
+    });
+
+    /* ---------- 16. SHAREABLE ROAST AND MEME CARDS ---------- */
+    $("floatShare").addEventListener("click", () => {
+      sfx.click();
+      shareText(SITE_SHARE_TEXT);
+    });
+
+    /* ---------- 18. SECRET FINAL ENDING ---------- */
+    async function playEnding() {
+      if (unlocked.size < ENDING_NEED) return;
+
+      const layer = $("endingLayer");
+      const count = $("endCount");
+      const text = $("endText");
+      const reveal = $("endReveal");
+      const actions = $("endActions");
+
+      layer.classList.remove("hidden");
+      reveal.classList.add("hidden");
+      actions.classList.add("hidden");
+      text.textContent = "";
+
+      for (let i = 5; i > 0; i--) {
+        count.textContent = i;
+        count.classList.remove("pulse");
+        void count.offsetWidth;
+        count.classList.add("pulse");
+        sfx.blip();
+        await sleep(reduceMotion ? 150 : 800);
+      }
+
+      count.textContent = "";
+      text.classList.add("glitch-flash");
+      sfx.buzz();
+      text.textContent = "⚠️ SYSTEM ANNOUNCEMENT: BRAIN.exe has stopped working. Reason: too much fun.";
+      await sleep(reduceMotion ? 100 : 1600);
+      text.classList.remove("glitch-flash");
+
+      const name = getName();
+      $("endRevealTitle").textContent = "Secret reward unlocked 👑";
+      $("endRevealBody").textContent =
+        `${name}, tu ${unlocked.size} achievements tak aa gaya, aur tune ek bhi kaam complete nahi kiya. ` +
+        `Final joke: tera brain ne 'kal se pakka' bola tha, aur ab tak 'kal' wahi chal raha hai. ` +
+        `Official rank: BRAINROT.exe Founder. Ab bas ek kaam kar: phone rakh, paani pi.`;
+      reveal.classList.remove("hidden");
+      actions.classList.remove("hidden");
+      sfx.reveal();
+      burst(["👑", "💀", "🧠", "✨"], 40);
+
+      $("endShare").focus();
+    }
+
+    $("endingGo").addEventListener("click", () => {
+      sfx.click();
+      playEnding();
+    });
+
+    $("endShare").addEventListener("click", () => {
+      sfx.click();
+      shareText(`BRAINROT.exe ka secret ending unlock kiya 👑\n${SIGN}`);
+    });
+
+    $("endClose").addEventListener("click", () => {
+      $("endingLayer").classList.add("hidden");
+    });
+
+    /* ---------- Close overlays with Escape ---------- */
+    function closeOverlays() {
+      $("eventLayer").classList.add("hidden");
+      $("eventBox").innerHTML = "";
+      if (!$("endingLayer").classList.contains("hidden") && $("endActions").classList.contains("hidden") === false) {
+        $("endingLayer").classList.add("hidden");
+      }
+    }
+
+    /* ---------- Starting state ---------- */
+    showJoke();
+    showAdvice();
+    setExcuseMode("believable");
+    bootTerminal();
+    renderAchievements();
+    initFloaters();
+
+    // Dudu-Bubu sticker reaction on first load is intentionally silent
   </script>
 </body>
 </html>
