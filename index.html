@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090611" />
+  <meta name="description" content="BRAINROT.exe — the internet's most useless website. Enter at your own risk 💀" />
+  <meta property="og:title" content="BRAINROT.exe 💀" />
+  <meta property="og:description" content="Your brain called. It wants a refund. Open this cursed website." />
+  <title>BRAINROT.exe 💀 | Internet ka bekaar corner</title>
+  <style>
+    :root{--bg:#090611;--panel:#151022;--pink:#ff3ec9;--purple:#a970ff;--lime:#d6ff5f;--text:#f8f3ff;--muted:#aaa0bd}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(ellipse at 15% 0%,#2b1040 0,transparent 35%),radial-gradient(ellipse at 100% 30%,#19104a 0,transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(#ffffff18 1px,transparent 1px),linear-gradient(90deg,#ffffff18 1px,transparent 1px);background-size:35px 35px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+    .wrap{width:min(1040px,92%);margin:auto;position:relative}
+    header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;gap:12px}
+    .logo{font-weight:1000;letter-spacing:-1px;font-size:1.05rem}.logo span{color:var(--pink)}
+    .status{font:700 .72rem ui-monospace,monospace;color:var(--lime);border:1px solid #d6ff5f66;padding:8px 10px;border-radius:99px}
+    .hero{text-align:center;padding:62px 0 30px}
+    .eyebrow{display:inline-block;border:1px solid #ff3ec966;color:var(--pink);border-radius:99px;padding:7px 12px;font:700 .72rem ui-monospace,monospace;letter-spacing:1.5px}
+    h1{font-size:clamp(3rem,10vw,6.8rem);line-height:.92;letter-spacing:-.08em;margin:24px 0 18px;font-weight:1000}
+    h1 .grad{background:linear-gradient(90deg,var(--pink),var(--purple),var(--lime));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{color:var(--muted);font-size:clamp(1rem,2.5vw,1.18rem);max-width:610px;margin:0 auto;line-height:1.7}
+    .warning{margin:26px auto 0;display:inline-flex;gap:8px;align-items:center;color:#fff;background:#ff3ec91b;border:1px solid #ff3ec94d;padding:10px 14px;border-radius:12px;font-size:.86rem}
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin:28px 0}
+    .card{background:linear-gradient(145deg,#1a1228ee,#100b1aee);border:1px solid #ffffff18;border-radius:22px;padding:24px;box-shadow:0 18px 70px #0004;backdrop-filter:blur(8px)}
+    .card h2{font-size:1.08rem;margin:0 0 7px}.hint{font-size:.87rem;color:var(--muted);line-height:1.5;margin:0 0 18px}
+    .joke{min-height:118px;display:grid;place-items:center;text-align:center;font-size:clamp(1.25rem,3vw,1.85rem);font-weight:900;line-height:1.35;padding:16px 4px}
+    .joke small{display:block;font-size:.72rem;color:var(--purple);font-weight:700;letter-spacing:1px;margin-bottom:10px}
+    .buttons{display:flex;flex-wrap:wrap;gap:10px}
+    button{font:800 .92rem inherit;cursor:pointer;border:0;border-radius:12px;padding:13px 16px;transition:transform .16s,filter .16s}
+    button:hover{transform:translateY(-2px);filter:brightness(1.1)}button:active{transform:scale(.98)}
+    .primary{background:linear-gradient(100deg,var(--pink),var(--purple));color:#100817;box-shadow:0 8px 28px #ff3ec933}
+    .secondary{background:#ffffff0b;border:1px solid #ffffff20;color:var(--text)}
+    .lime{background:var(--lime);color:#11130b}
+    .meter{height:10px;background:#ffffff12;border-radius:99px;overflow:hidden;margin:15px 0 8px}
+    .bar{height:100%;width:3%;background:linear-gradient(90deg,var(--pink),var(--purple),var(--lime));transition:width .45s ease}
+    .tiny{font: .75rem ui-monospace,monospace;color:var(--muted)}
+    .stat{font-size:2.3rem;font-weight:1000;color:var(--lime);margin:12px 0 0}
+    .roast{font-size:1.12rem;font-weight:800;line-height:1.5;margin:16px 0;min-height:80px}
+    .full{grid-column:1/-1}
+    .scanrow{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+    .terminal{font: .82rem/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;background:#050409;border:1px solid #b879ff44;color:#bfffa0;border-radius:14px;padding:15px;margin-top:16px;min-height:95px;white-space:pre-wrap}
+    .terminal .pink{color:var(--pink)}
+    .footer{text-align:center;color:var(--muted);font-size:.8rem;padding:26px 0 38px;line-height:1.8}
+    .footer b{color:var(--pink)}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--lime);color:#111;padding:12px 17px;border-radius:12px;font-weight:900;box-shadow:0 10px 40px #0007;transition:.25s;z-index:5;text-align:center;width:max-content;max-width:90%}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .glitch{animation:glitch .28s linear 2}
+    @keyframes glitch{0%,100%{transform:translate(0)}25%{transform:translate(3px,-2px);filter:hue-rotate(40deg)}50%{transform:translate(-3px,2px)}75%{transform:translate(2px,1px);filter:hue-rotate(-40deg)}}
+    .shake{animation:shake .35s ease-in-out}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+    @media(max-width:720px){.hero{padding-top:42px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:20px}header{padding-top:16px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">BRAINROT<span>.exe</span></div>
+      <div class="status">● SYSTEM UNSTABLE (mentally)</div>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="eyebrow">WELCOME TO THE INTERNET'S BACK ALLEY</div>
+        <h1>YOUR BRAIN<br><span class="grad">NEEDS WIFI.</span></h1>
+        <p class="sub">A highly advanced artificial intelligence-powered website.<br>Actually no. We have 3 brain cells and one is on chai break.</p>
+        <div class="warning">⚠️ Warning: may cause uncontrollable “BRO WHAT 💀”</div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>🎲 Random Bakchodi Generator</h2>
+          <p class="hint">Press the button. Receive wisdom nobody asked for.</p>
+          <div class="joke" id="joke"><div><small>DAILY DOSE OF NONSENSE</small>Loading disappointment...</div></div>
+          <div class="buttons">
+            <button class="primary" id="newJoke">Generate bakchodi ↗</button>
+            <button class="secondary" id="copyJoke">Copy this nonsense</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>🧠 Brain Damage Scanner</h2>
+          <p class="hint">A 100% fake scan. No medical claims, only emotional damage.</p>
+          <div class="scanrow">
+            <div><div class="tiny">BRAINROT LEVEL</div><div class="stat" id="level">0%</div></div>
+            <button class="lime" id="scan">SCAN MY BRAIN</button>
+          </div>
+          <div class="meter"><div class="bar" id="bar"></div></div>
+          <div class="tiny" id="scanLabel">Waiting for the last brain cell to connect…</div>
+          <div class="terminal" id="terminal"><span class="pink">$</span> brainrot --status<br>> User detected. Common sense not found.</div>
+        </article>
+
+        <article class="card full">
+          <div class="scanrow">
+            <div>
+              <h2>🗣️ Roast Me, Computer</h2>
+              <p class="hint" style="margin-bottom:0">Friendly roasts only. Your therapist has enough work.</p>
+            </div>
+            <button class="secondary" id="roastBtn">Roast me 💀</button>
+          </div>
+          <div class="roast" id="roast">Your screen time report saw you and immediately filed for leave.</div>
+          <button class="secondary" id="shareRoast">Share this roast</button>
+        </article>
+
+        <article class="card full">
+          <div class="scanrow">
+            <div>
+              <h2>🧪 The Useless Button™</h2>
+              <p class="hint" style="margin-bottom:0">Scientists spent 9 years making this button do absolutely nothing.</p>
+            </div>
+            <button class="primary" id="useless">DO NOT PRESS</button>
+          </div>
+          <div class="tiny" id="uselessResult" style="margin-top:15px">The button is legally useless. Probably.</div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      Made with <b>zero brain cells</b> and questionable Wi-Fi.<br>
+      If you laughed, send this to your most chronically online friend.<br>
+      <button class="secondary" id="shareSite" style="margin-top:12px">Share BRAINROT.exe ↗</button><br>
+      <span>Unofficial parody project • No tracking • No account needed</span>
+    </footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const jokes = [
+      "My last brain cell just sent a resignation email. 💀",
+      "Life is short. So is my attention span. Wait, what were we doing?",
+      "I put the ‘pro’ in procrastination. The rest is pending.",
+      "Mummy: phone rakh de. Me: bas ek last reel. *sunrise*",
+      "My bank balance is doing a disappearing act. No ticket needed.",
+      "I need 8 hours of sleep. Unfortunately, I also need to overthink from 2 AM.",
+      "Wi-Fi down? Suddenly I'm a Victorian child with no hobbies.",
+      "My future is so bright, even my screen brightness is jealous.",
+      "Brain: let's sleep. Also brain at 2:47 AM: remember that awkward thing from 2019?",
+      "I'm not lazy. I'm on energy-saving mode. Permanently.",
+      "Me opening Google to do one task and leaving with 17 tabs and no answers.",
+      "My life has more plot twists than a soap opera written by a confused pigeon.",
+      "Confidence level: sent ‘you too’ when the waiter said enjoy your food.",
+      "I don't chase people. I chase the delivery guy on the map.",
+      "My plans are premium. My execution is free trial.",
+      "Exam ke time brain: server not responding. Please try after results.",
+      "I have a black belt in making scenarios that will never happen.",
+      "My screen time isn't high. My phone just misses me a lot.",
+      "If overthinking burned calories, I'd be a Wi-Fi signal.",
+      "I came. I saw. I forgot why I came."
+    ];
+    const roasts = [
+      "Your screen time report saw you and immediately filed for leave. 💀",
+      "You have 47 tabs open in your brain and all of them are playing music.",
+      "Your sleep schedule looks like it was designed by a raccoon.",
+      "You say ‘5 minutes’ with the confidence of a person who means 3 business days.",
+      "Your attention span just swiped left on this sentence.",
+      "You're not the main character. You're the buffering symbol in the intro.",
+      "Your to-do list has become a historical document.",
+      "You overthink so much, even your imaginary arguments need a sequel.",
+      "Your phone battery has more boundaries than you do.",
+      "You don't procrastinate. You let tasks marinate until they become emergencies."
+    ];
+    const scanMessages = [
+      "Common sense.exe has stopped responding.",
+      "Detected 17 unfinished tasks and one suspiciously cold chai.",
+      "Brain cells found: 2. One is buffering.",
+      "Installing life update… Error 404: motivation not found.",
+      "Scanning memories… found cringe from 2018. Delete? (cannot delete)",
+      "Final result: certified internet goblin. Congratulations?"
+    ];
+    const $ = id => document.getElementById(id);
+    let lastJoke = -1, scanCount = 0, toastTimer;
+    function pick(arr, last=-1) {
+      if (arr.length < 2) return 0;
+      let i; do { i = Math.floor(Math.random() * arr.length); } while (i === last);
+      return i;
+    }
+    function toast(message) {
+      $('toast').textContent = message;
+      $('toast').classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => $('toast').classList.remove('show'), 2200);
+    }
+    function showJoke() {
+      lastJoke = pick(jokes, lastJoke);
+      $('joke').innerHTML = '<div><small>BREAKING: NOBODY ASKED</small>' + jokes[lastJoke] + '</div>';
+      $('joke').classList.remove('glitch'); void $('joke').offsetWidth; $('joke').classList.add('glitch');
+    }
+    async function copyText(text, success) {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast(success);
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = text; area.style.position = 'fixed'; area.style.opacity = '0';
+        document.body.appendChild(area); area.select();
+        const ok = document.execCommand('copy'); area.remove();
+        toast(ok ? success : 'Copy failed — select the text manually.');
+      }
+    }
+    $('newJoke').addEventListener('click', showJoke);
+    $('copyJoke').addEventListener('click', () => {
+      const text = $('joke').innerText.replace('BREAKING: NOBODY ASKED','').trim();
+      copyText(text + '\n— BRAINROT.exe 💀', 'Nonsense copied. Spread the disease. 💀');
+    });
+    $('scan').addEventListener('click', () => {
+      scanCount++;
+      const level = Math.min(100, Math.floor(15 + Math.random() * 86));
+      $('level').textContent = level + '%';
+      $('bar').style.width = level + '%';
+      $('scanLabel').textContent = level < 40 ? 'Brain cell status: employed (for now).' : level < 75 ? 'Warning: too much internet detected.' : 'MAXIMUM BRAINROT. Please touch grass.';
+      $('terminal').innerHTML = '<span class="pink">$</span> brainrot --scan --deep<br>> Initializing fake scanner...<br>> ' + scanMessages[(scanCount - 1) % scanMessages.length] + '<br>> Result: ' + level + '% brainrot. This is a joke, not a real assessment.';
+      $('scan').textContent = scanCount === 1 ? 'SCAN AGAIN 🔁' : 'SCAN #' + (scanCount + 1) + ' 🔁';
+      if (scanCount === 2) toast('Second scan complete. Your brain has requested HR. 💀');
+      else if (scanCount === 3) toast('Third scan unlocked: please go drink water. 🫡');
+      else toast('Scan complete. Absolutely no science was used.');
+      $('terminal').classList.remove('glitch'); void $('terminal').offsetWidth; $('terminal').classList.add('glitch');
+    });
+    $('roastBtn').addEventListener('click', () => {
+      const roast = roasts[pick(roasts)];
+      $('roast').textContent = roast;
+      $('roast').classList.remove('shake'); void $('roast').offsetWidth; $('roast').classList.add('shake');
+    });
+    $('shareRoast').addEventListener('click', () => shareText($('roast').textContent + '\n\nRoasted by BRAINROT.exe 💀'));
+    $('useless').addEventListener('click', () => {
+      const lines = [
+        'Congratulations. You pressed a button. Humanity is saved.',
+        'Button pressed. Your aura has decreased by 3 points.',
+        'We have notified absolutely nobody.',
+        'Loading purpose... purpose not found.',
+        'This button has more commitment issues than your situationship.',
+        'Achievement unlocked: professional button presser.',
+        'Error 418: I am a teapot. Go drink water.'
+      ];
+      $('uselessResult').textContent = lines[Math.floor(Math.random() * lines.length)];
+      $('useless').textContent = 'STILL USELESS 😭';
+      $('uselessResult').classList.remove('glitch'); void $('uselessResult').offsetWidth; $('uselessResult').classList.add('glitch');
+    });
+    async function shareText(text) {
+      if (navigator.share) {
+        try { await navigator.share({title:'BRAINROT.exe 💀', text, url:location.href}); } catch(e) {}
+      } else copyText(text + '\n' + location.href, 'Copied. Now send it to the group chat. 🚀');
+    }
+    $('shareSite').addEventListener('click', async () => {
+      const data = {title:'BRAINROT.exe 💀', text:'Your brain called. It wants a refund. 💀 Try this cursed website:', url:location.href};
+      if (navigator.share) {
+        try { await navigator.share(data); } catch(e) {}
+      } else copyText(data.text + '\n' + data.url, 'Link copied. Go cause chaos. 🚀');
+    });
+    showJoke();
+  </script>
+</body>
+</html>
